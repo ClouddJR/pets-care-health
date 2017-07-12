@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:title="Animal one">
+    <menu>
+      <group
+        android:id="@+id/test"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="Details">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="Gallery">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="Notes">
+        </item>
+      </group>
+    </menu>
+  </item>
+</menu>
