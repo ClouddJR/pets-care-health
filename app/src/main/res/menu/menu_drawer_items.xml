@@ -8,23 +8,24 @@
         android:enabled="true"
         android:visible="true">
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:id="@+id/menu_nav_info"
+          android:icon="@drawable/ic_account_circle"
           android:title="@string/menu_nav_info">
         </item>
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_local_hospital"
           android:title="@string/menu_nav_medical">
         </item>
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_note_add"
           android:title="@string/menu_nav_notes">
         </item>
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_perm_media"
           android:title="@string/menu_nav_gallery">
         </item>
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_action_bell"
           android:title="@string/menu_nav_reminders">
         </item>
       </group>
@@ -38,16 +39,16 @@
         android:enabled="true"
         android:visible="true">
         <item
-          android:icon="@mipmap/ic_launcher"
-          android:title="@string/menu_nav_sign_out">
-        </item>
-        <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_local_pharmacy"
           android:title="@string/menu_nav_vets">
         </item>
         <item
-          android:icon="@mipmap/ic_launcher"
+          android:icon="@drawable/ic_action_home"
           android:title="@string/menu_nav_hotels">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_sign_out">
         </item>
       </group>
     </menu>

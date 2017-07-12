@@ -11,6 +11,11 @@
   tools:context="com.clouddroid.pettypetscarehealth.MainActivity"
   tools:showIn="@layout/layout_app_bar_main">
 
+  <FrameLayout
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
   <com.github.clans.fab.FloatingActionMenu
     android:id="@+id/material_design_android_floating_action_menu"
     android:layout_width="wrap_content"

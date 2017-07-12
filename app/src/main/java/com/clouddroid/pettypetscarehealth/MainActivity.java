@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.clouddroid.pettypetscarehealth.fragments.InfoFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
   NavigationView mNavigationView;
   @BindView(R.id.spinner_animals)
   Spinner spinner;
+
+  private FragmentManager fragmentManager;
+  private FragmentTransaction fragmentTransaction;
+  private Fragment activeFragment;
 
 
   @Override
@@ -72,7 +80,18 @@ public class MainActivity extends AppCompatActivity {
     navigationView.setNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
       @Override
       public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        item.setChecked(true);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        if (!item.isChecked()) {
+          item.setChecked(true);
+          switch (item.getItemId()) {
+            case R.id.menu_nav_info:
+              activeFragment = new InfoFragment();
+              fragmentTransaction.add(R.id.fragment_container, activeFragment);
+              fragmentTransaction.commit();
+              break;
+          }
+        }
         mDrawerLayout.closeDrawers();
         return true;
       }
@@ -81,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void removeTitle() {
     ActionBar actionBar = getSupportActionBar();
-    if(actionBar != null) {
+    if (actionBar != null) {
       actionBar.setTitle("");
     }
   }
@@ -91,5 +110,6 @@ public class MainActivity extends AppCompatActivity {
         R.array.animals_array, R.layout.spinner_animal_item);
     spinner.setAdapter(adapter);
   }
+
 
 }

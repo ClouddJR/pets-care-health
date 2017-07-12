@@ -4,7 +4,7 @@
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="menu_nav_info">Info</string>
-  <string name="menu_nav_medical">Gallery</string>
+  <string name="menu_nav_medical">Medical Records</string>
   <string name="menu_nav_notes">Notes</string>
   <string name="menu_nav_gallery">Gallery</string>
   <string name="menu_nav_reminders">Reminders</string>
@@ -19,11 +19,12 @@
   <string name="fab_medical">medical record</string>
   <string name="fab_reminder">reminder</string>
   <string name="fab_gallery">gallery item</string>
-  
-  
+
+
   <string-array name="animals_array">
     <item>Jazon</item>
     <item>Lupus</item>
     <item>Maksiu</item>
   </string-array>
+
 </resources>
