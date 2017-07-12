@@ -9,7 +9,7 @@
   android:fitsSystemWindows="true"
   tools:openDrawer="start">
 
-  <include layout="@layout/layour_app_bar_main"/>
+  <include layout="@layout/layout_app_bar_main"/>
 
   <android.support.design.widget.NavigationView
     android:id="@+id/navigation_view"

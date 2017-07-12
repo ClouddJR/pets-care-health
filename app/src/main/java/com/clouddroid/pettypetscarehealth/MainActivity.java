@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
   Toolbar mToolbar;
   @BindView(R.id.navigation_view)
   NavigationView mNavigationView;
+  @BindView(R.id.spinner_animals)
+  Spinner spinner;
 
 
   @Override
@@ -32,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(mToolbar);
 
     setUpHamburgerIcon();
+    setUpSpinner();
     setupDrawerLayout(mNavigationView);
+    removeTitle();
 
   }
 
@@ -48,12 +55,8 @@ public class MainActivity extends AppCompatActivity {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
 
     return super.onOptionsItemSelected(item);
   }
@@ -75,4 +78,18 @@ public class MainActivity extends AppCompatActivity {
       }
     });
   }
+
+  private void removeTitle() {
+    ActionBar actionBar = getSupportActionBar();
+    if(actionBar != null) {
+      actionBar.setTitle("");
+    }
+  }
+
+  private void setUpSpinner() {
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        R.array.animals_array, R.layout.spinner_animal_item);
+    spinner.setAdapter(adapter);
+  }
+
 }

@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:title="Animal one">
+  <item android:title="@string/menu_nav_animal_name">
     <menu>
       <group
-        android:id="@+id/test"
+        android:id="@+id/menu_nav_group_animal"
         android:checkableBehavior="single"
         android:enabled="true"
         android:visible="true">
         <item
           android:icon="@mipmap/ic_launcher"
-          android:title="Details">
+          android:title="@string/menu_nav_info">
         </item>
         <item
           android:icon="@mipmap/ic_launcher"
-          android:title="Gallery">
+          android:title="@string/menu_nav_medical">
         </item>
         <item
           android:icon="@mipmap/ic_launcher"
-          android:title="Notes">
+          android:title="@string/menu_nav_notes">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_gallery">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_reminders">
+        </item>
+      </group>
+    </menu>
+  </item>
+  <item android:title="@string/menu_nav_additional">
+    <menu>
+      <group
+        android:id="@+id/menu_nav_group_additional"
+        android:checkableBehavior="single"
+        android:enabled="true"
+        android:visible="true">
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_sign_out">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_vets">
+        </item>
+        <item
+          android:icon="@mipmap/ic_launcher"
+          android:title="@string/menu_nav_hotels">
         </item>
       </group>
     </menu>

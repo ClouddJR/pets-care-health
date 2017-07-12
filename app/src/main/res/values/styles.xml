@@ -18,4 +18,13 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+  <style name="MenuButtonsStyle">
+    <item name="fab_size">mini</item>
+    <item name="fab_shadowColor">#444</item>
+    <item name="elevation">1dp</item>
+    <item name="fab_colorNormal">@color/colorAccent</item>
+    <item name="fab_colorPressed">#cbd660</item>
+  </style>
+
+
 </resources>
