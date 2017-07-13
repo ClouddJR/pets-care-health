@@ -1,8 +1,10 @@
 <resources>
   <string name="app_name">Petty: Pets Care&amp;Health</string>
   <string name="action_settings">Settings</string>
+
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
+
   <string name="menu_nav_info">Info</string>
   <string name="menu_nav_medical">Medical Records</string>
   <string name="menu_nav_notes">Notes</string>
@@ -15,10 +17,20 @@
   <string name="menu_nav_animal_name">Animal one</string>
   <string name="menu_main_contact">Contact</string>
   <string name="menu_main_about">About</string>
-  <string name="fab_animal">animal</string>
-  <string name="fab_medical">medical record</string>
-  <string name="fab_reminder">reminder</string>
-  <string name="fab_gallery">gallery item</string>
+
+  <string name="fab_animal">Animal</string>
+  <string name="fab_medical">Medical record</string>
+  <string name="fab_reminder">Reminder</string>
+  <string name="fab_gallery">Gallery item</string>
+
+  <string name="dialog_picker_dog">dog</string>
+  <string name="dialog_picker_cat">cat</string>
+  <string name="dialog_picker_hamster">hamster</string>
+  <string name="dialog_picker_rabbit">rabbit</string>
+  <string name="dialog_picker_fish">fish</string>
+  <string name="dialog_picker_parrot">parrot</string>
+  <string name="dialog_picker_turtle">turtle</string>
+  <string name="dialog_picker_other">other</string>
 
 
   <string-array name="animals_array">

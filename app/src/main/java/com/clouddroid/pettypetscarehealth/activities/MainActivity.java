@@ -1,5 +1,6 @@
-package com.clouddroid.pettypetscarehealth;
+package com.clouddroid.pettypetscarehealth.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,11 +15,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.clouddroid.pettypetscarehealth.R;
+import com.clouddroid.pettypetscarehealth.dialogs.DialogAnimalPicker;
 import com.clouddroid.pettypetscarehealth.fragments.InfoFragment;
+import com.github.clans.fab.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
   NavigationView mNavigationView;
   @BindView(R.id.spinner_animals)
   Spinner spinner;
+  @BindView(R.id.fab_animal)
+  FloatingActionButton fabAnimal;
 
   private FragmentManager fragmentManager;
   private FragmentTransaction fragmentTransaction;
@@ -48,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
     setUpSpinner();
     setupDrawerLayout(mNavigationView);
     removeTitle();
+
+    fabAnimal.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        DialogAnimalPicker dialog = new DialogAnimalPicker(MainActivity.this,R.style.AnimalDialog);
+        dialog.show();
+      }
+    });
 
   }
 
@@ -109,6 +128,19 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
         R.array.animals_array, R.layout.spinner_animal_item);
     spinner.setAdapter(adapter);
+    spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        TextView textView = (TextView) findViewById(R.id.textview_spinner);
+        textView.setTextColor(Color.WHITE);
+        textView.setTextSize(20);
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> adapterView) {
+
+      }
+    });
   }
 
 

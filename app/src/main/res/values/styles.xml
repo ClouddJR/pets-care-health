@@ -23,7 +23,19 @@
     <item name="fab_shadowColor">#444</item>
     <item name="elevation">1dp</item>
     <item name="fab_colorNormal">@color/colorAccent</item>
-    <item name="fab_colorPressed">#cbd660</item>
+    <item name="fab_colorPressed">#ecc758</item>
+  </style>
+
+
+  <style name="AnimalDialog" parent="@android:style/Theme.Dialog">
+    <item name="android:windowAnimationStyle">@style/AnimalDialogAnimation</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+  <style name="AnimalDialogAnimation">
+    <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+    <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
   </style>
 
 
