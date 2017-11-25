@@ -8,10 +8,34 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
+
   <style name="AppTheme.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
-    <item name="android:windowTranslucentStatus">true</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar.Login">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="colorAccent">@android:color/white</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar.SignIn" parent="AppTheme">
+    <item name="colorControlNormal">@android:color/white</item>
+    <item name="colorControlActivated">@android:color/white</item>
+    <item name="colorControlHighlight">@android:color/white</item>
+    <item name="colorAccent">@color/colorPrimaryDark</item>
+    <item name="android:windowBackground">@color/colorPrimary</item>
+    <item name="android:textColorHint">@android:color/white</item>
+    <item name="android:editTextColor">@android:color/white</item>
+    <item name="android:textColor">@android:color/white</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar.Transparent" parent="AppTheme">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
   </style>
 
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
@@ -23,8 +47,26 @@
     <item name="fab_shadowColor">#444</item>
     <item name="elevation">1dp</item>
     <item name="fab_colorNormal">@color/colorAccent</item>
-    <item name="fab_colorPressed">#cbd660</item>
+    <item name="fab_colorPressed">#ecc758</item>
   </style>
 
+
+  <style name="AnimalDialog" parent="@android:style/Theme.Dialog">
+    <item name="android:windowAnimationStyle">@style/AnimalDialogAnimation</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+  <style name="AnimalDialogAnimation">
+    <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+    <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+  </style>
+
+  <style name="AppTheme.NoActionBar.Login.EditText" parent="AppTheme.NoActionBar.Login">
+    <item name="colorControlNormal">@android:color/white</item>
+    <item name="colorControlActivated">@android:color/white</item>
+    <item name="colorControlHighlight">@android:color/white</item>
+    <item name="android:textColorHint">@android:color/white</item>
+  </style>
 
 </resources>

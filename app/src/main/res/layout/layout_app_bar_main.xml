@@ -5,12 +5,14 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.clouddroid.pettypetscarehealth.MainActivity">
+  tools:context="com.clouddroid.pettypetscarehealth.activities.MainActivity">
 
   <android.support.design.widget.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/AppTheme.AppBarOverlay">
+    android:theme="@style/AppTheme.AppBarOverlay"
+    android:visibility="visible"
+    app:expanded="false">
 
     <android.support.v7.widget.Toolbar
       android:id="@+id/toolbar"
@@ -20,10 +22,10 @@
       app:popupTheme="@style/AppTheme.PopupOverlay">
 
       <Spinner
-        android:id="@+id/spinner_animals"
+        android:id="@+id/spinnerAnimals"
         android:layout_width="wrap_content"
-        android:popupBackground="#FFFFFF"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:popupBackground="#FFFFFF"/>
 
     </android.support.v7.widget.Toolbar>
 

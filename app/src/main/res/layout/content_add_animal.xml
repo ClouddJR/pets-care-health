@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  tools:context="com.clouddroid.pettypetscarehealth.activities.AddAnimalActivity"
+  tools:showIn="@layout/activity_add_animal">
+
+  <GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:columnCount="3">
+
+    <TextView
+      android:id="@+id/generalTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_column="0"
+      android:layout_row="0"
+      android:layout_rowSpan="2"
+      android:text="@string/add_activity_general_category"
+      android:textColor="@color/colorPrimaryDark"/>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="0">
+
+      <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_name_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="1">
+
+      <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_date_form"
+        android:inputType="date"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+      android:id="@+id/otherTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_column="0"
+      android:layout_row="3"
+      android:text="@string/add_activity_other_category"
+      android:textColor="@color/colorPrimaryDark"/>
+
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="3">
+
+      <EditText
+        android:id="@+id/breedEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_breed_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="4">
+
+      <EditText
+        android:id="@+id/colorEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_color_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="20dp"
+      android:layout_column="1"
+      android:layout_row="6"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="@string/add_activity_gender_form"/>
+
+      <Spinner
+        android:id="@+id/genderSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_marginEnd="36dp"/>
+
+    </LinearLayout>
+
+
+    <Button
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_column="0"
+      android:layout_columnSpan="3"
+      android:layout_row="7"
+      android:background="@drawable/button_add_bg"
+      android:text="@string/add_activity_button_form"
+      android:textColor="@android:color/white"/>
+
+  </GridLayout>
+
+</android.support.v4.widget.NestedScrollView>
