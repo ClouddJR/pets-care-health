@@ -47,6 +47,7 @@
           android:title="@string/menu_nav_hotels">
         </item>
         <item
+          android:id="@+id/menu_nav_sign_out"
           android:icon="@mipmap/ic_launcher"
           android:title="@string/menu_nav_sign_out">
         </item>
