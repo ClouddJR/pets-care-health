@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "780768913185",
+    "firebase_url": "https://petty-999e2.firebaseio.com",
+    "project_id": "petty-999e2",
+    "storage_bucket": "petty-999e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780768913185:android:7c0daed76a338eb4",
+        "android_client_info": {
+          "package_name": "com.clouddroid.pettypetscarehealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780768913185-ug48pdp39vr46anksb5sb4qep0i8vnci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clouddroid.pettypetscarehealth",
+            "certificate_hash": "5c53bc45ddd4b228ffe6797f2df6799d45d007ba"
+          }
+        },
+        {
+          "client_id": "780768913185-3u4otssfi1cccu8uopp7nioc94bdui81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqPX3uWZnMeEiS02mCbocS5Gd1jwdvPCE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780768913185-3u4otssfi1cccu8uopp7nioc94bdui81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,6 +8,7 @@
   android:paddingRight="@dimen/activity_horizontal_margin"
   android:background="@drawable/pattern"
   android:gravity="bottom"
+  android:theme="@style/ThemeOverlay.AppCompat.Dark"
   android:orientation="vertical">
 
 

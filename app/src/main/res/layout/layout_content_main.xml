@@ -12,12 +12,12 @@
   tools:showIn="@layout/layout_app_bar_main">
 
   <FrameLayout
-    android:id="@+id/fragment_container"
+    android:id="@+id/fragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
 
   <com.github.clans.fab.FloatingActionMenu
-    android:id="@+id/material_design_android_floating_action_menu"
+    android:id="@+id/fabMenu"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="11dp"
@@ -56,7 +56,7 @@
     fab:menu_showShadow="false">
 
     <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/fab_animal"
+      android:id="@+id/fabAnimal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_pets"
@@ -66,7 +66,7 @@
       fab:menu_colorPressed="#cbd660"/>
 
     <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/fab_medical"
+      android:id="@+id/fabMedical"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_local_hospital"
@@ -76,7 +76,7 @@
       fab:menu_colorPressed="#cbd660"/>
 
     <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/fab_reminder"
+      android:id="@+id/fabReminder"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_action_bell"
@@ -86,7 +86,7 @@
       fab:menu_colorPressed="#cbd660"/>
 
     <com.github.clans.fab.FloatingActionButton
-      android:id="@+id/fab_gallery_item"
+      android:id="@+id/fabGallery_item"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:src="@drawable/ic_perm_media"
