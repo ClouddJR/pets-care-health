@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.dialogs.DialogAnimalPicker
 import com.clouddroid.pettypetscarehealth.fragments.InfoFragment
+import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.repositories.UserRepository
 import kotlinx.android.synthetic.main.layout_app_bar_main.*
 import kotlinx.android.synthetic.main.layout_content_main.*
@@ -25,12 +26,14 @@ class MainActivity : AppCompatActivity() {
     private val fragmentManager = supportFragmentManager
     private var activeFragment = InfoFragment()
     private val userRepository = UserRepository()
+    private val animalRepository = AnimalsRepository()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         redirectToLogin()
         setContentView(R.layout.layout_drawer_main)
+        connectWithViewModel()
         setSupportActionBar(toolbar)
         initializeInfoFragment()
         setUpHamburgerIcon()
@@ -38,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         setupDrawerLayout()
         removeTitle()
         setFabOnClickListeners()
+
+    }
+
+    private fun connectWithViewModel() {
 
     }
 
@@ -115,6 +122,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpSpinner() {
+
         val adapter = ArrayAdapter.createFromResource(this, R.array.animals_array, R.layout.spinner_animal_item)
         spinnerAnimals?.adapter = adapter
         spinnerAnimals?.onItemSelectedListener = object : OnItemSelectedListener {

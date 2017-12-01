@@ -1,9 +1,13 @@
 package com.clouddroid.pettypetscarehealth.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.clouddroid.pettypetscarehealth.R
@@ -15,15 +19,13 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
 
-class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener {
+class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener, UserRepository.OnEmailResetListener {
 
     private val RC_SIGN_IN = 123
     private val providers = arrayListOf(
             AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
             AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build())
-
     private val googleProvider = arrayListOf(AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build())
-
     private val userRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +42,7 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener {
         if (requestCode == RC_SIGN_IN) {
             val response = IdpResponse.fromResultIntent(data)
             // Successfully signed in
-            if (resultCode == RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
@@ -55,6 +57,7 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener {
 
     private fun initUserRepository() {
         userRepository.addOnLoggedListener(this)
+        userRepository.addOnEmailResetListener(this)
     }
 
 
@@ -76,6 +79,10 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener {
         createAccountButton.setOnClickListener {
             startActivityForResult(buildAuthUi(providers), RC_SIGN_IN)
         }
+
+        forgotPasswordButton.setOnClickListener {
+            displayResetPasswordDialog()
+        }
     }
 
     private fun buildAuthUi(type: ArrayList<AuthUI.IdpConfig>): Intent {
@@ -94,5 +101,27 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener {
             Toast.makeText(this, R.string.login_activity_wrong_credentials, Toast.LENGTH_LONG).show()
             progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onEmailReset(wasSuccessful: Boolean) {
+        val toastText = when (wasSuccessful) {
+            true -> getString(R.string.login_activity_password_reset_toast_success)
+            else -> getString(R.string.login_activity_password_reset_toast_fail)
+        }
+        Toast.makeText(this, toastText, Toast.LENGTH_LONG).show()
+    }
+
+
+    private fun displayResetPasswordDialog() {
+        val dialog = AlertDialog.Builder(this, R.style.AnimalOtherDialog)
+        val editText = EditText(this)
+        editText.hint = getString(R.string.login_activity_password_reset_form_edit_text)
+        val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        editText.layoutParams = layoutParams
+        dialog.setView(editText)
+        dialog.setPositiveButton(getString(R.string.login_activity_password_reset_form_button), { _, _ ->
+            userRepository.sendPasswordResetEmail(editText.text.toString())
+        })
+        dialog.show()
     }
 }

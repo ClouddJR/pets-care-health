@@ -57,10 +57,20 @@
     <item name="android:windowNoTitle">true</item>
   </style>
 
+  <style name="AnimalOtherDialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+    <item name="android:windowAnimationStyle">@style/AnimalDialogAnimation</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:textColor">@color/colorAccent</item>
+    <item name="android:layout_marginTop">3dp</item>
+    <item name="android:layout_marginLeft">3dp</item>
+    <item name="android:layout_marginRight">3dp</item>
+  </style>
+
   <style name="AnimalDialogAnimation">
     <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
     <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
   </style>
+
 
   <style name="AppTheme.NoActionBar.Login.EditText" parent="AppTheme.NoActionBar.Login">
     <item name="colorControlNormal">@android:color/white</item>

@@ -16,7 +16,7 @@
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="40dp"
+      android:layout_marginTop="25dp"
       android:layout_gravity="center"
       android:fontFamily="cursive"
       android:gravity="center"
@@ -28,7 +28,7 @@
     <android.support.design.widget.TextInputLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="80dp"
+      android:layout_marginTop="60dp"
       android:layout_marginLeft="35dp"
       android:layout_marginRight="35dp"
       android:textColorHint="@android:color/white">
@@ -73,7 +73,7 @@
       android:id="@+id/loginButton"
       android:layout_width="match_parent"
       android:layout_height="40dp"
-      android:layout_marginTop="45dp"
+      android:layout_marginTop="50dp"
       android:layout_marginLeft="35dp"
       android:layout_marginRight="35dp"
       android:background="@drawable/button_login_bg"
@@ -111,10 +111,24 @@
       android:textColor="@android:color/white"
       android:textSize="15sp"/>
 
+    <Button
+      android:id="@+id/forgotPasswordButton"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="30dp"
+      android:layout_gravity="center"
+      android:background="@android:color/transparent"
+      android:gravity="center"
+      android:text="@string/login_activity_password_reset"
+      android:textAllCaps="false"
+      android:textColor="@android:color/white"
+      android:textSize="15sp"/>
+
+
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="45dp"
+      android:layout_marginTop="35dp"
       android:layout_gravity="center"
       android:gravity="center"
       android:text="@string/login_activity_or"

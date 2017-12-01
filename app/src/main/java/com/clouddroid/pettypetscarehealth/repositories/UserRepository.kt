@@ -8,11 +8,16 @@ import com.google.firebase.auth.FirebaseAuth
 
 class UserRepository {
 
-    private var listener: OnLoggedListener? = null
+    private var loggedListener: OnLoggedListener? = null
+    private var emailResetListener: OnEmailResetListener? = null
     private val mAuth = FirebaseAuth.getInstance()
 
     interface OnLoggedListener {
         fun onLoggedResult(wasSuccessful: Boolean)
+    }
+
+    interface OnEmailResetListener {
+        fun onEmailReset(wasSuccessful: Boolean)
     }
 
     fun isLoggedIn(): Boolean {
@@ -23,14 +28,25 @@ class UserRepository {
     fun signInWithLoginAndPassword(login: String, password: String) {
         if (login.isNotEmpty() && password.isNotEmpty()) {
             mAuth.signInWithEmailAndPassword(login, password).addOnCompleteListener {
-                listener?.onLoggedResult(it.isSuccessful)
+                loggedListener?.onLoggedResult(it.isSuccessful)
             }
+        } else {
+            loggedListener?.onLoggedResult(false)
         }
     }
 
+    fun sendPasswordResetEmail(email: String) {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
+            emailResetListener?.onEmailReset(it.isSuccessful)
+        }
+    }
 
     fun addOnLoggedListener(listener: OnLoggedListener) {
-        this.listener = listener
+        loggedListener = listener
+    }
+
+    fun addOnEmailResetListener(listener: OnEmailResetListener) {
+        emailResetListener = listener
     }
 
     fun signOut() {
