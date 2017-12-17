@@ -15,7 +15,7 @@ class AnimalsRepository {
 
     private val mAuth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
-    private val databaseReference = database.getReference(mAuth.currentUser?.uid)
+    private val databaseReference = database.getReference(mAuth.currentUser?.uid ?: "none")
 
     fun addNewAnimal(imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
         databaseReference.child("animals").child(name).child("imageUri").setValue(imageUri.toString())

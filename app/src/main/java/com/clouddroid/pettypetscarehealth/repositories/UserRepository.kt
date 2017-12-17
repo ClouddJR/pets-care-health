@@ -36,8 +36,12 @@ class UserRepository {
     }
 
     fun sendPasswordResetEmail(email: String) {
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
-            emailResetListener?.onEmailReset(it.isSuccessful)
+        if (!email.isEmpty()) {
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
+                emailResetListener?.onEmailReset(it.isSuccessful)
+            }
+        } else {
+            emailResetListener?.onEmailReset(false)
         }
     }
 

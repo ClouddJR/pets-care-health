@@ -116,6 +116,9 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener, User
         val dialog = AlertDialog.Builder(this, R.style.AnimalOtherDialog)
         val editText = EditText(this)
         editText.hint = getString(R.string.login_activity_password_reset_form_edit_text)
+        val f = TextView::class.java.getDeclaredField("mCursorDrawableRes")
+        f.isAccessible = true
+        f.set(editText, R.color.colorAccent)
         val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         editText.layoutParams = layoutParams
         dialog.setView(editText)

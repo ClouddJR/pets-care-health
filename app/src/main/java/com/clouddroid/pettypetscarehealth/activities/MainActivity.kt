@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         setupDrawerLayout()
         removeTitle()
         setFabOnClickListeners()
-
     }
 
     private fun connectWithViewModel() {
