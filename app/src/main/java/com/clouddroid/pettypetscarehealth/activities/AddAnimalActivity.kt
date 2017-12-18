@@ -28,7 +28,7 @@ import java.util.*
 
 class AddAnimalActivity : AppCompatActivity() {
 
-    private val WRITE_RQ = 1234
+    private val writeRequestCode = 1234
     private val animalsRepository = AnimalsRepository()
     private var imageUri: Uri? = null
 
@@ -124,7 +124,7 @@ class AddAnimalActivity : AppCompatActivity() {
 
     private fun askForPermissionsAndDisplayCropActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), WRITE_RQ)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), writeRequestCode)
         } else {
             //permission already granted, so display crop dialog
             CropImage.startPickImageActivity(this)
@@ -138,7 +138,7 @@ class AddAnimalActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == WRITE_RQ) {
+        if (requestCode == writeRequestCode) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 CropImage.startPickImageActivity(this)
             }

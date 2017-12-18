@@ -1,7 +1,7 @@
 package com.clouddroid.pettypetscarehealth.repositories
 
 import android.net.Uri
-import android.util.Log
+import com.clouddroid.pettypetscarehealth.model.Animal
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +17,17 @@ class AnimalsRepository {
     private val database = FirebaseDatabase.getInstance()
     private val databaseReference = database.getReference(mAuth.currentUser?.uid ?: "none")
 
+    //listener from AnimalViewModel
+    private var listener: AnimalListListener? = null
+
+    interface AnimalListListener {
+        fun onSuccessLoaded(list: List<Animal>)
+    }
+
+    fun setListener(listener: AnimalListListener) {
+        this.listener = listener
+    }
+
     fun addNewAnimal(imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
         databaseReference.child("animals").child(name).child("imageUri").setValue(imageUri.toString())
         databaseReference.child("animals").child(name).child("name").setValue(name)
@@ -28,22 +39,19 @@ class AnimalsRepository {
     }
 
     fun getAnimals() {
-        val animalListener = object : ValueEventListener {
-            override fun onDataChange(animalsList: DataSnapshot?) {
-                animalsList?.let {
-                    for (animal in animalsList.children) {
-                        Log.d("animal", animal.toString())
-                    }
-                }
-            }
-
+        databaseReference.child("animals").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
-
+                // not used
             }
-        }
 
-        databaseReference.child("animals").addValueEventListener(animalListener)
+            override fun onDataChange(animalsReceived: DataSnapshot?) {
+                val animalsTempList = mutableListOf<Animal>()
+                animalsReceived?.children?.let { it.mapTo(animalsTempList) { it.getValue(Animal::class.java) as Animal } }
+                listener?.onSuccessLoaded(animalsTempList)
+            }
+
+
+        })
     }
-
 
 }
