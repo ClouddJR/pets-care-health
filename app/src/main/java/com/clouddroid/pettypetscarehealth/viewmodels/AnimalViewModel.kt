@@ -13,6 +13,7 @@ import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 class AnimalViewModel : ViewModel(), AnimalsRepository.AnimalListListener {
 
     private var animalsList: MutableLiveData<List<Animal>>? = null
+    private var selectedAnimal: MutableLiveData<Animal> = MutableLiveData()
 
     private val animalsRepository = AnimalsRepository()
 
@@ -21,7 +22,7 @@ class AnimalViewModel : ViewModel(), AnimalsRepository.AnimalListListener {
     }
 
     fun getAnimalsList(): LiveData<List<Animal>>? {
-        if(animalsList == null) {
+        if (animalsList == null) {
             animalsList = MutableLiveData()
             animalsRepository.getAnimals()
         }
@@ -30,6 +31,14 @@ class AnimalViewModel : ViewModel(), AnimalsRepository.AnimalListListener {
 
     override fun onSuccessLoaded(list: List<Animal>) {
         animalsList?.value = list
+    }
+
+    fun setSelectedAnimal(animal: Animal) {
+        selectedAnimal.value = animal
+    }
+
+    fun getSelectedAnimal(): LiveData<Animal> {
+        return selectedAnimal
     }
 
 }

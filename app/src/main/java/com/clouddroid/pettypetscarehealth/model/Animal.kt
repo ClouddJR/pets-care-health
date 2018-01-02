@@ -8,4 +8,5 @@ data class Animal(val name: String = "",
                   val breed: String = "",
                   val color: String = "",
                   val gender: String = "",
-                  val imageUri: String = "")
+                  val imageUri: String = "",
+                  val type: String = "")

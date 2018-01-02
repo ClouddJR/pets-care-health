@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener
 /**
  * Created by Arkadiusz on 25.11.2017
  */
+
 class AnimalsRepository {
 
     private val mAuth = FirebaseAuth.getInstance()
@@ -36,6 +37,10 @@ class AnimalsRepository {
         databaseReference.child("animals").child(name).child("color").setValue(color)
         databaseReference.child("animals").child(name).child("gender").setValue(gender)
         databaseReference.child("animals").child(name).child("type").setValue(type)
+    }
+
+    fun addNewChartValue(xValue: String, yValue: Float, animalName: String, animalDate: String) {
+        databaseReference.child("measurements").child("$animalName : $animalDate").child("value").child(xValue).setValue(yValue)
     }
 
     fun getAnimals() {

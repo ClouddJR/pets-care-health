@@ -36,13 +36,6 @@
   <string name="dialog_picker_turtle">turtle</string>
   <string name="dialog_picker_other">other</string>
 
-
-  <string-array name="animals_array">
-    <item>Jazon</item>
-    <item>Lupus</item>
-    <item>Maksiu</item>
-  </string-array>
-
   <string name="title_activity_add_animal">Add an animal</string>
 
   <string name="add_activity_name_form">Enter your pet\'s name</string>
@@ -77,6 +70,9 @@
   <string name="login_activity_password_reset_toast_fail">That email does not exist in database</string>
   <string name="login_activity_password_reset_form_edit_text">Email address</string>
   <string name="login_activity_password_reset_form_button">Reset</string>
+
+  <string name="info_fragment_height_chart_no_data">Click here to add height values</string>
+  <string name="info_fragment_weight_chart_no_data">Click here to add weight values</string>
 
 
 </resources>
