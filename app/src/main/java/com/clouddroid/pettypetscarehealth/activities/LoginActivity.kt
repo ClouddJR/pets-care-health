@@ -123,7 +123,7 @@ class LoginActivity : AppCompatActivity(), UserRepository.OnLoggedListener, User
         editText.layoutParams = layoutParams
         dialog.setView(editText)
         dialog.setPositiveButton(getString(R.string.login_activity_password_reset_form_button), { _, _ ->
-            userRepository.sendPasswordResetEmail(editText.text.toString())
+            userRepository.sendPasswordResetEmail(editText.text.toString().trim())
         })
         dialog.show()
     }

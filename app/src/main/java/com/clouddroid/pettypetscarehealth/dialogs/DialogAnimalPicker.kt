@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.dialog_animal_picker.*
 
 class DialogAnimalPicker(internal var context: Context, @StyleRes themeResId: Int) : Dialog(context, themeResId) {
 
-    var customType: String = ""
+    private var customType: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

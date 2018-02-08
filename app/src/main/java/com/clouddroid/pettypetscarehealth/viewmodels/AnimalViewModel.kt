@@ -18,7 +18,7 @@ class AnimalViewModel : ViewModel(), AnimalsRepository.AnimalListListener {
     private val animalsRepository = AnimalsRepository()
 
     fun initialize() {
-        animalsRepository.setListener(this)
+        animalsRepository.setAnimalsListListener(this)
     }
 
     fun getAnimalsList(): LiveData<List<Animal>>? {
@@ -29,7 +29,7 @@ class AnimalViewModel : ViewModel(), AnimalsRepository.AnimalListListener {
         return animalsList
     }
 
-    override fun onSuccessLoaded(list: List<Animal>) {
+    override fun onAnimalsListLoaded(list: List<Animal>) {
         animalsList?.value = list
     }
 

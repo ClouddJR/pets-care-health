@@ -6,8 +6,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  app:theme="@style/MenuButtonsStyle"
   app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  app:theme="@style/MenuButtonsStyle"
   tools:context="com.clouddroid.pettypetscarehealth.activities.MainActivity"
   tools:showIn="@layout/layout_app_bar_main">
 
@@ -96,4 +96,6 @@
       fab:menu_colorPressed="#cbd660"/>
 
   </com.github.clans.fab.FloatingActionMenu>
+
+
 </RelativeLayout>

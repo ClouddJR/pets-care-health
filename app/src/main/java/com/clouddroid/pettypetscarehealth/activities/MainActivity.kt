@@ -96,10 +96,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceActiveFragmentWith(fragment: Fragment) {
-        activeFragment = fragment
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainer, activeFragment)
-        fragmentTransaction.commit()
+        if (activeFragment.javaClass != fragment.javaClass) {
+            activeFragment = fragment
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, activeFragment)
+            fragmentTransaction.commit()
+        }
     }
 
 

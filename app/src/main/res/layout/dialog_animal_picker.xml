@@ -3,7 +3,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:layout_row="9"
-  android:background="@drawable/dialog_animal_picker_bg"
+  android:background="@drawable/dialog_bg"
   android:columnCount="2">
 
   <TextView

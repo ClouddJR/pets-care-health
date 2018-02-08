@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="50dp"
+  android:orientation="horizontal">
+
+  <TextView
+    android:id="@+id/dateTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:layout_alignParentStart="true"
+    android:layout_gravity="center"
+    android:text="@string/dialog_chart_date_placeholder"
+    android:textSize="16sp"/>
+
+  <TextView
+    android:id="@+id/valueTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="35dp"
+    android:layout_alignBottom="@+id/dateTextView"
+    android:layout_toEndOf="@+id/dateTextView"
+    android:gravity="center"
+    android:text="@string/dialog_chart_value_placeholder"
+    android:textSize="16sp"/>
+
+  <ImageView
+    android:id="@+id/trashIcon"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_marginEnd="10dp"
+    android:layout_alignBottom="@+id/valueTextView"
+    android:layout_alignParentEnd="true"
+    android:src="@drawable/ic_action_trash"
+    android:contentDescription="@string/dialog_chart_trashImageView_description"/>
+
+</RelativeLayout>

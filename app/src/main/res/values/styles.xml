@@ -57,6 +57,20 @@
     <item name="android:windowNoTitle">true</item>
   </style>
 
+  <style name="ChartValuesDialog" parent="@android:style/Theme.Dialog">
+    <item name="android:windowAnimationStyle">@style/ChartDialogAnimation</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:textColor">@android:color/primary_text_light</item>
+  </style>
+
+  <style name="ChartValuesAddingDialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+    <item name="android:windowAnimationStyle">@style/AnimalDialogAnimation</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:colorAccent">@color/colorAccent</item>
+  </style>
+
   <style name="AnimalOtherDialog" parent="@android:style/Theme.Material.Light.Dialog.Alert">
     <item name="android:windowAnimationStyle">@style/AnimalDialogAnimation</item>
     <item name="android:windowNoTitle">true</item>
@@ -69,6 +83,11 @@
   <style name="AnimalDialogAnimation">
     <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
     <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+  </style>
+
+  <style name="ChartDialogAnimation">
+    <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+    <item name="android:windowExitAnimation">@anim/slide_out_top</item>
   </style>
 
 

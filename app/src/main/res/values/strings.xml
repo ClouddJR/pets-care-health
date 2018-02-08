@@ -71,8 +71,21 @@
   <string name="login_activity_password_reset_form_edit_text">Email address</string>
   <string name="login_activity_password_reset_form_button">Reset</string>
 
-  <string name="info_fragment_height_chart_no_data">Click here to add height values</string>
-  <string name="info_fragment_weight_chart_no_data">Click here to add weight values</string>
+  <string name="info_fragment_height_chart_no_data">Click button below to add height values</string>
+  <string name="info_fragment_weight_chart_no_data">Click button below to add weight values</string>
+  <string name="info_fragment_weight_chart_label">Weight</string>
+  <string name="info_fragment_height_chart_label">Height</string>
+
+  <string name="dialog_chart_trashImageView_description">trash icon</string>
+  <string name="dialog_chart_value_placeholder">value</string>
+  <string name="dialog_chart_date_placeholder">date:</string>
+  <string name="dialog_chart_button_add_value">Add new value</string>
+  <string name="dialog_chart_no_data_text">There are no data to display</string>
+  <string name="dialog_chart_adding_dialog_date">Enter a date</string>
+  <string name="dialog_chart_adding_dialog_value">Enter a value</string>
+  <string name="dialog_chart_adding_dialog_positive_button">OK</string>
+  <string name="dialog_chart_adding_dialog_negative_button">Cancel</string>
+  <string name="fragment_info_more_button">more</string>
 
 
 </resources>
