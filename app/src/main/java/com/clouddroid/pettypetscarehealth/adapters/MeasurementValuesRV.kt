@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.measurement_value_item.view.*
 /**
  * Created by arkadiusz on 08.02.18.
  */
-class MeasurementValuesRV : RecyclerView.Adapter<ViewHolder>() {
+class MeasurementValuesRV : RecyclerView.Adapter<MeasurementValuesRV.ViewHolder>() {
 
     private var measurementValuesList: List<MeasurementValue>? = null
 
@@ -32,14 +32,15 @@ class MeasurementValuesRV : RecyclerView.Adapter<ViewHolder>() {
         return measurementValuesList?.size ?: 0
     }
 
-}
 
-class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val view: View = itemView
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val view: View = itemView
 
-    fun bindElement(measurementValue: MeasurementValue?) {
-        view.dateTextView.text = measurementValue?.x
-        view.unitTextView.text = "kg"
-        view.valueTextView.text = measurementValue?.y.toString()
+        fun bindElement(measurementValue: MeasurementValue?) {
+            view.dateTextView.text = measurementValue?.x
+            view.unitTextView.text = "kg"
+            view.valueTextView.text = measurementValue?.y.toString()
+        }
     }
+
 }

@@ -23,6 +23,7 @@
   <string name="menu_main_about">About</string>
 
   <string name="fab_animal">Animal</string>
+  <string name="fab_note">Note</string>
   <string name="fab_medical">Medical record</string>
   <string name="fab_reminder">Reminder</string>
   <string name="fab_gallery">Gallery item</string>
@@ -55,7 +56,10 @@
     <item>Female</item>
   </string-array>
 
-  <string name="title_activity_login">LoginActivity</string>
+  <string name="edit_activity_button_save">Save Changes</string>
+  <string name="edit_activity_button_delete">Delete Animal</string>
+
+  <string name="login_activity_title">LoginActivity</string>
   <string name="login_activity_email">Email address</string>
   <string name="login_activity_password">Password</string>
   <string name="login_activity_login_button">LOGIN</string>
@@ -86,6 +90,8 @@
   <string name="dialog_chart_adding_dialog_positive_button">OK</string>
   <string name="dialog_chart_adding_dialog_negative_button">Cancel</string>
   <string name="fragment_info_more_button">more</string>
+  <string name="main_activity_edit_animal_button">Edit Animal</string>
+  <string name="title_activity_edit_animal">Edit Animal</string>
 
 
 </resources>

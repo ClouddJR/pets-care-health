@@ -8,7 +8,7 @@ import android.view.View
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
-import kotlinx.android.synthetic.main.dialog_chart_add_value.*
+import kotlinx.android.synthetic.main.dialog_add_measurement_value.*
 import java.util.*
 
 /**
@@ -24,7 +24,7 @@ class AddValueDialog(context: Context, themeResId: Int) : Dialog(context, themeR
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_chart_add_value)
+        setContentView(R.layout.dialog_add_measurement_value)
         initAddButtonClickListener()
         initPositiveAndNegativeButton()
     }
@@ -51,16 +51,14 @@ class AddValueDialog(context: Context, themeResId: Int) : Dialog(context, themeR
         val xValue = dateEditText.text.toString()
         val yValue = valueEditText.text.toString().toFloat()
         animalsRepository.addNewHeightValue(xValue, yValue,
-                currentAnimal!!.name,
-                currentAnimal!!.date)
+                currentAnimal!!.key)
     }
 
     private fun addNewWeightValue() {
         val xValue = dateEditText.text.toString()
         val yValue = valueEditText.text.toString().toFloat()
         animalsRepository.addNewWeightValue(xValue, yValue,
-                currentAnimal!!.name,
-                currentAnimal!!.date)
+                currentAnimal!!.key)
     }
 
     fun setCurrentAnimal(pet: Animal?) {

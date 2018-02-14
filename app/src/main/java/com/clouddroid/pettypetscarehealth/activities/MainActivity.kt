@@ -1,6 +1,5 @@
 package com.clouddroid.pettypetscarehealth.activities
 
-import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -24,6 +23,8 @@ import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import kotlinx.android.synthetic.main.layout_app_bar_main.*
 import kotlinx.android.synthetic.main.layout_content_main.*
 import kotlinx.android.synthetic.main.layout_drawer_main.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private var activeFragment: Fragment = InfoFragment()
     private var animalViewModel: AnimalViewModel? = null
     private val userRepository = UserRepository()
+    private var currentAnimal: Animal? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         setupDrawerLayout()
         removeTitle()
         setFabOnClickListeners()
+        initEditAnimalButton()
     }
 
     private fun redirectToLogin() {
@@ -61,8 +64,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeAnimalData() {
         animalViewModel?.getAnimalsList()?.observe(this, Observer {
-            setUpSpinner(it as List<Animal>)
+            if (it?.isEmpty() == true) {
+                hideViewsRelatedToAnimal()
+                setEmptySelectedAnimal()
+            } else {
+                showViewsRelatedToAnimal()
+                setUpSpinner(it as List<Animal>)
+            }
         })
+    }
+
+    private fun hideViewsRelatedToAnimal() {
+        spinnerAnimals?.visibility = View.GONE
+        editAnimalButton?.visibility = View.GONE
+    }
+
+    private fun setEmptySelectedAnimal() {
+        animalViewModel?.setSelectedAnimal(Animal())
+    }
+
+    private fun showViewsRelatedToAnimal() {
+        spinnerAnimals?.visibility = View.VISIBLE
+        editAnimalButton?.visibility = View.VISIBLE
     }
 
     private fun initializeActiveFragment() {
@@ -113,19 +136,25 @@ class MainActivity : AppCompatActivity() {
         fabAnimal.setOnClickListener { displayAnimalPickerDialog() }
     }
 
+    private fun initEditAnimalButton() {
+        editAnimalButton.setOnClickListener {
+            startActivity<EditAnimalActivity>("selectedAnimal" to currentAnimal)
+        }
+    }
+
 
     private fun displaySignOutDialog() {
-        val dialog = AlertDialog.Builder(this)
-        dialog.setMessage(R.string.main_activity_sign_out_dialog)
-        dialog.setPositiveButton(R.string.main_activity_sign_out_yes) { _, _ ->
-            userRepository.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-        dialog.setNegativeButton(R.string.main_activity_sign_out_no, { _, _ ->
-            //nothing here
-        })
-        dialog.show()
+        alert(R.string.main_activity_sign_out_dialog) {
+            positiveButton(R.string.main_activity_sign_out_yes) {
+                userRepository.signOut()
+                startActivity<LoginActivity>()
+                finish()
+            }
+            negativeButton(R.string.main_activity_sign_out_no) {
+                it.dismiss()
+            }
+
+        }.show()
     }
 
 
@@ -150,6 +179,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
                 (view as? TextView?)?.setTextColor(Color.WHITE)
                 animalViewModel?.setSelectedAnimal(listOfAnimals[i])
+                currentAnimal = listOfAnimals[i]
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {

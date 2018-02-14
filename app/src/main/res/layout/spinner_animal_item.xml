@@ -2,7 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/spinnerTextView"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:padding="16dp"
+  android:layout_height="match_parent"
+  android:padding="10dp"
+  android:maxLines="2"
+  android:gravity="center_vertical"
   android:textColor="@android:color/tab_indicator_text"
-  android:textSize="15sp"/>
+  android:textSize="14sp"/>

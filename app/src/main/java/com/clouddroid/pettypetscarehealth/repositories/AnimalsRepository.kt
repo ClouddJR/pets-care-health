@@ -51,13 +51,32 @@ class AnimalsRepository {
     }
 
     fun addNewAnimal(imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
-        databaseReference.child("animals").child(name).child("imageUri").setValue(imageUri.path)
-        databaseReference.child("animals").child(name).child("name").setValue(name)
-        databaseReference.child("animals").child(name).child("date").setValue(date)
-        databaseReference.child("animals").child(name).child("breed").setValue(breed)
-        databaseReference.child("animals").child(name).child("color").setValue(color)
-        databaseReference.child("animals").child(name).child("gender").setValue(gender)
-        databaseReference.child("animals").child(name).child("type").setValue(type)
+        val key = databaseReference.push().key
+        databaseReference.child("animals").child(key).child("key").setValue(key)
+        databaseReference.child("animals").child(key).child("imageUri").setValue(imageUri.path)
+        databaseReference.child("animals").child(key).child("name").setValue(name)
+        databaseReference.child("animals").child(key).child("date").setValue(date)
+        databaseReference.child("animals").child(key).child("breed").setValue(breed)
+        databaseReference.child("animals").child(key).child("color").setValue(color)
+        databaseReference.child("animals").child(key).child("gender").setValue(gender)
+        databaseReference.child("animals").child(key).child("type").setValue(type)
+    }
+
+    fun editAnimal(key: String, imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
+        databaseReference.child("animals").child(key).child("key").setValue(key)
+        databaseReference.child("animals").child(key).child("imageUri").setValue(imageUri.path)
+        databaseReference.child("animals").child(key).child("name").setValue(name)
+        databaseReference.child("animals").child(key).child("date").setValue(date)
+        databaseReference.child("animals").child(key).child("breed").setValue(breed)
+        databaseReference.child("animals").child(key).child("color").setValue(color)
+        databaseReference.child("animals").child(key).child("gender").setValue(gender)
+        databaseReference.child("animals").child(key).child("type").setValue(type)
+    }
+
+    fun deleteAnimal(key: String) {
+        databaseReference.child("animals").child(key).removeValue()
+        databaseReference.child("measurements").child("weights").child(key).removeValue()
+        databaseReference.child("measurements").child("heights").child(key).removeValue()
     }
 
     fun getAnimals() {
@@ -76,26 +95,26 @@ class AnimalsRepository {
         })
     }
 
-    fun addNewHeightValue(xValue: String, yValue: Float, animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("heights").child("$animalName : $animalDate").child("value " + xValue).child("x").setValue(xValue)
-        databaseReference.child("measurements").child("heights").child("$animalName : $animalDate").child("value " + xValue).child("y").setValue(yValue)
+    fun addNewHeightValue(xValue: String, yValue: Float, key: String) {
+        databaseReference.child("measurements").child("heights").child(key).child("value " + xValue).child("x").setValue(xValue)
+        databaseReference.child("measurements").child("heights").child(key).child("value " + xValue).child("y").setValue(yValue)
     }
 
-    fun addNewWeightValue(xValue: String, yValue: Float, animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("weights").child("$animalName : $animalDate").child("value " + xValue).child("x").setValue(xValue)
-        databaseReference.child("measurements").child("weights").child("$animalName : $animalDate").child("value " + xValue).child("y").setValue(yValue)
+    fun addNewWeightValue(xValue: String, yValue: Float, key: String) {
+        databaseReference.child("measurements").child("weights").child(key).child("value " + xValue).child("x").setValue(xValue)
+        databaseReference.child("measurements").child("weights").child(key).child("value " + xValue).child("y").setValue(yValue)
     }
 
-    fun deleteHeightValue(xValue: String, animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("heights").child("$animalName : $animalDate").child("value " + xValue).removeValue()
+    fun deleteHeightValue(xValue: String, key: String) {
+        databaseReference.child("measurements").child("heights").child(key).child("value " + xValue).removeValue()
     }
 
-    fun deleteWeightValue(xValue: String, animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("weights").child("$animalName : $animalDate").child("value " + xValue).removeValue()
+    fun deleteWeightValue(xValue: String, key: String) {
+        databaseReference.child("measurements").child("weights").child(key).child("value " + xValue).removeValue()
     }
 
-    fun getHeightValuesForAnimal(animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("heights").child("$animalName : $animalDate").addValueEventListener(object : ValueEventListener {
+    fun getHeightValuesForAnimal(key: String) {
+        databaseReference.child("measurements").child("heights").child(key).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
                 //not used
             }
@@ -108,8 +127,8 @@ class AnimalsRepository {
         })
     }
 
-    fun getWeightValuesForAnimal(animalName: String, animalDate: String) {
-        databaseReference.child("measurements").child("weights").child("$animalName : $animalDate").addValueEventListener(object : ValueEventListener {
+    fun getWeightValuesForAnimal(key: String) {
+        databaseReference.child("measurements").child("weights").child(key).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
                 //not used
             }

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  tools:context="com.clouddroid.pettypetscarehealth.activities.EditAnimalActivity"
+  tools:showIn="@layout/activity_edit_animal">
+
+
+  <GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:columnCount="3">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_column="0"
+      android:layout_columnSpan="3"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:background="@android:color/darker_gray"
+        android:id="@+id/petImage"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:padding="3dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/paw"/>
+
+      <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@color/colorAccent"
+        android:src="@drawable/ic_action_picture"/>
+
+    </LinearLayout>
+
+
+    <Button
+      android:id="@+id/deleteAnimalButton"
+      style="?android:attr/buttonBarButtonStyle"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:layout_column="0"
+      android:layout_columnSpan="3"
+      android:layout_row="1"
+      android:text="@string/edit_activity_button_delete"/>
+
+    <TextView
+      android:id="@+id/generalTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_column="0"
+      android:layout_row="2"
+      android:layout_rowSpan="2"
+      android:text="@string/add_activity_general_category"
+      android:textColor="@color/colorPrimaryDark"/>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="2">
+
+      <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_name_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="3">
+
+      <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:hint="@string/add_activity_date_form"
+        android:inputType="date"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+      android:id="@+id/otherTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_column="0"
+      android:layout_row="4"
+      android:text="@string/add_activity_other_category"
+      android:textColor="@color/colorPrimaryDark"/>
+
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="4">
+
+      <EditText
+        android:id="@+id/breedEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_breed_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_column="1"
+      android:layout_row="5">
+
+      <EditText
+        android:id="@+id/colorEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_activity_color_form"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="20dp"
+      android:layout_column="1"
+      android:layout_row="6"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="@string/add_activity_gender_form"/>
+
+      <Spinner
+        android:id="@+id/genderSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_marginEnd="36dp"/>
+
+    </LinearLayout>
+
+
+    <Button
+      android:id="@+id/addAnimalButton"
+      android:layout_width="match_parent"
+      android:layout_height="40dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="25dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_column="0"
+      android:layout_columnSpan="3"
+      android:layout_row="7"
+      android:background="@drawable/button_add_bg"
+      android:text="@string/edit_activity_button_save"
+      android:textColor="@android:color/white"/>
+
+  </GridLayout>
+
+</ScrollView>

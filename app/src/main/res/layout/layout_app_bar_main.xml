@@ -21,11 +21,30 @@
       android:background="?attr/colorPrimary"
       app:popupTheme="@style/AppTheme.PopupOverlay">
 
-      <Spinner
-        android:id="@+id/spinnerAnimals"
-        android:layout_width="wrap_content"
+      <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:popupBackground="#FFFFFF"/>
+        android:orientation="horizontal">
+
+        <Spinner
+          android:id="@+id/spinnerAnimals"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="0.65"
+          android:popupBackground="#FFFFFF"/>
+
+        <Button
+          android:id="@+id/editAnimalButton"
+          style="?android:attr/buttonBarButtonStyle"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="0.35"
+          android:text="@string/main_activity_edit_animal_button"
+          android:textColor="@android:color/white"
+          android:textSize="12sp"/>
+
+      </LinearLayout>
+
 
     </android.support.v7.widget.Toolbar>
 

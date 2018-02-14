@@ -66,6 +66,16 @@
       fab:menu_colorPressed="#cbd660"/>
 
     <com.github.clans.fab.FloatingActionButton
+      android:id="@+id/fabNote"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_note_add"
+      fab:fab_label="@string/fab_note"
+      fab:fab_size="mini"
+      fab:menu_colorNormal="@color/colorAccent"
+      fab:menu_colorPressed="#cbd660"/>
+
+    <com.github.clans.fab.FloatingActionButton
       android:id="@+id/fabMedical"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

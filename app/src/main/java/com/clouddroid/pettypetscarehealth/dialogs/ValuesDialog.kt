@@ -11,7 +11,7 @@ import com.clouddroid.pettypetscarehealth.adapters.MeasurementDialogValuesRV
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.model.MeasurementValue
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
-import kotlinx.android.synthetic.main.dialog_chart_values.*
+import kotlinx.android.synthetic.main.dialog_values.*
 
 /**
  * Created by Arkadiusz on 08.01.2018
@@ -29,7 +29,7 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_chart_values)
+        setContentView(R.layout.dialog_values)
         initAddButtonListener()
         initValuesListener()
         displayRecyclerView()
@@ -69,8 +69,8 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
 
     private fun getValuesForSelectedAnimal() {
         when (valueType) {
-            "height" -> animalsRepository.getHeightValuesForAnimal(selectedAnimal!!.name, selectedAnimal!!.date)
-            "weight" -> animalsRepository.getWeightValuesForAnimal(selectedAnimal!!.name, selectedAnimal!!.date)
+            "height" -> animalsRepository.getHeightValuesForAnimal(selectedAnimal!!.key)
+            "weight" -> animalsRepository.getWeightValuesForAnimal(selectedAnimal!!.key)
         }
     }
 
@@ -81,17 +81,15 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
     override fun onHeightValuesLoaded(list: List<MeasurementValue>) {
         if (list.isEmpty()) {
             displayNoDataText()
-        } else {
-            setChartValuesAndRefreshRV(list)
         }
+        setChartValuesAndRefreshRV(list)
     }
 
     override fun onWeightValuesLoaded(list: List<MeasurementValue>) {
         if (list.isEmpty()) {
             displayNoDataText()
-        } else {
-            setChartValuesAndRefreshRV(list)
         }
+        setChartValuesAndRefreshRV(list)
     }
 
     private fun displayNoDataText() {
@@ -105,8 +103,8 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
 
     override fun onTrashClicked(value: MeasurementValue) {
         when (valueType) {
-            "height" -> animalsRepository.deleteHeightValue(value.x, selectedAnimal!!.name, selectedAnimal!!.date)
-            "weight" -> animalsRepository.deleteWeightValue(value.x, selectedAnimal!!.name, selectedAnimal!!.date)
+            "height" -> animalsRepository.deleteHeightValue(value.x, selectedAnimal!!.key)
+            "weight" -> animalsRepository.deleteWeightValue(value.x, selectedAnimal!!.key)
         }
     }
 }

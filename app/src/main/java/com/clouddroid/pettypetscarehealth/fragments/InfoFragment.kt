@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.adapters.MeasurementValuesRV
 import com.clouddroid.pettypetscarehealth.dialogs.ValuesDialog
@@ -16,7 +17,6 @@ import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.model.MeasurementValue
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_info.*
 import java.io.File
 
@@ -46,21 +46,36 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
         animalViewModel = activity?.let { ViewModelProviders.of(it).get(AnimalViewModel::class.java) }
     }
 
+
     private fun observeAnimalData() {
         animalViewModel?.getSelectedAnimal()?.observe(activity!!, Observer {
-            it?.let {
-                showMainView()
-                updateCurrentAnimal(it)
-                updateImage(it)
-                updateGeneralInfo(it)
-                updateOtherInfo(it)
-                updateMeasurementValues(it)
+
+            if (isAnimalEmpty(it)) {
+                hideMainView()
+            } else {
+                it?.let {
+                    showMainView()
+                    updateCurrentAnimal(it)
+                    updateImage(it)
+                    updateGeneralInfo(it)
+                    updateOtherInfo(it)
+                    updateMeasurementValues(it)
+                }
             }
+
         })
+    }
+
+    private fun isAnimalEmpty(animal: Animal?): Boolean {
+        return animal?.name?.equals("") ?: true
     }
 
     private fun showMainView() {
         main_scroll_view.visibility = View.VISIBLE
+    }
+
+    private fun hideMainView() {
+        main_scroll_view.visibility = View.GONE
     }
 
     private fun updateCurrentAnimal(chosenAnimal: Animal) {
@@ -69,9 +84,7 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
 
     private fun updateImage(pet: Animal) {
         if (petImageView != null && pet.imageUri != "") {
-            Picasso.with(context).load(File(pet.imageUri)).resize(0, 700).into(petImageView)
-        } else if (petImageView != null) {
-            Picasso.with(context).load(R.drawable.paw).resize(0, 900).into(petImageView)
+            Glide.with(context!!).load(File(pet.imageUri)).into(petImageView)
         }
     }
 
@@ -88,8 +101,8 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     private fun updateMeasurementValues(pet: Animal) {
-        animalsRepository.getHeightValuesForAnimal(pet.name, pet.date)
-        animalsRepository.getWeightValuesForAnimal(pet.name, pet.date)
+        animalsRepository.getHeightValuesForAnimal(pet.key)
+        animalsRepository.getWeightValuesForAnimal(pet.key)
     }
 
 

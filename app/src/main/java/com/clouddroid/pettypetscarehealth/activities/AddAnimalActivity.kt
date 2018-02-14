@@ -15,13 +15,14 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.repositories.StorageRepository
-import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_add_animal.*
 import kotlinx.android.synthetic.main.content_add_animal.*
+import org.jetbrains.anko.alert
 import java.io.File
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -35,11 +36,15 @@ class AddAnimalActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setMainView()
+        setUpSpinner()
+        initOnClickListeners()
+    }
+
+    private fun setMainView() {
         setContentView(R.layout.activity_add_animal)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setUpSpinner()
-        initOnClickListeners()
     }
 
     private fun setUpSpinner() {
@@ -53,7 +58,7 @@ class AddAnimalActivity : AppCompatActivity() {
         addAnimalButton.setOnClickListener {
             if (isFormValid()) {
                 animalsRepository.addNewAnimal(imageUri ?: Uri.parse(""),
-                        replaceSpacesWithNewLines(nameEditText.text.toString()),
+                        nameEditText.text.toString(),
                         dateEditText.text.toString(),
                         replaceSpacesWithNewLines(breedEditText.text.toString()),
                         colorEditText.text.toString(),
@@ -69,6 +74,17 @@ class AddAnimalActivity : AppCompatActivity() {
 
     private fun replaceSpacesWithNewLines(text: String): String {
         return text.replace(" ", "\n")
+    }
+
+    override fun onBackPressed() {
+        alert("Are you sure? All changes will be lost") {
+            positiveButton("OK") {
+                super.onBackPressed()
+            }
+            negativeButton("Cancel") {
+                it.dismiss()
+            }
+        }.show()
     }
 
 
@@ -115,7 +131,7 @@ class AddAnimalActivity : AppCompatActivity() {
     private fun saveImageToStorageAndDisplayHere(data: Intent?) {
         data?.let {
             imageUri = StorageRepository.saveFile(CropImage.getActivityResult(data).uri as Uri)
-            Picasso.with(this).load(File(imageUri?.path)).into(petImage)
+            Glide.with(this).load(File(imageUri?.path)).into(petImage)
         }
     }
 

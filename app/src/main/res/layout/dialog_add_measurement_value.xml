@@ -31,7 +31,7 @@
       android:layout_height="match_parent"
       android:layout_margin="5dp"
       android:hint="@string/dialog_chart_adding_dialog_value"
-      android:inputType="number"/>
+      android:inputType="numberDecimal"/>
 
   </android.support.design.widget.TextInputLayout>
 
