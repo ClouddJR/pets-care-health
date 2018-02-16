@@ -6,6 +6,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -15,8 +17,10 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.clouddroid.pettypetscarehealth.R
+import com.clouddroid.pettypetscarehealth.dialogs.AddNoteDialog
 import com.clouddroid.pettypetscarehealth.dialogs.DialogAnimalPicker
 import com.clouddroid.pettypetscarehealth.fragments.InfoFragment
+import com.clouddroid.pettypetscarehealth.fragments.NotesFragment
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.repositories.UserRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
@@ -26,6 +30,7 @@ import kotlinx.android.synthetic.main.layout_drawer_main.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 
+
 class MainActivity : AppCompatActivity() {
 
     private val fragmentManager = supportFragmentManager
@@ -33,6 +38,9 @@ class MainActivity : AppCompatActivity() {
     private var animalViewModel: AnimalViewModel? = null
     private val userRepository = UserRepository()
     private var currentAnimal: Animal? = null
+
+    private var fragmentToBePlaced: Fragment? = null
+    private var wasItemClicked: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,19 +111,45 @@ class MainActivity : AppCompatActivity() {
     private fun setupDrawerLayout() {
         navigationView.setNavigationItemSelectedListener { item ->
             if (!item.isChecked) {
+                wasItemClicked = true
                 item.isChecked = true
                 when (item.itemId) {
                     R.id.menu_nav_info -> {
-                        replaceActiveFragmentWith(InfoFragment())
+                        fragmentToBePlaced = InfoFragment()
+                    }
+                    R.id.menu_nav_notes -> {
+                        fragmentToBePlaced = NotesFragment()
                     }
                     R.id.menu_nav_sign_out -> {
                         displaySignOutDialog()
                     }
                 }
             }
-            layoutDrawer.closeDrawers()
+            layoutDrawer.closeDrawer(GravityCompat.START)
             true
         }
+
+
+        layoutDrawer.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerStateChanged(newState: Int) {
+                //not used
+            }
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                //not used
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                if (wasItemClicked) {
+                    replaceActiveFragmentWith(fragmentToBePlaced!!)
+                }
+                wasItemClicked = false
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                //not used
+            }
+        })
     }
 
     private fun replaceActiveFragmentWith(fragment: Fragment) {
@@ -134,6 +168,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFabOnClickListeners() {
         fabAnimal.setOnClickListener { displayAnimalPickerDialog() }
+        fabNote.setOnClickListener { displayNoteDialog() }
     }
 
     private fun initEditAnimalButton() {
@@ -166,6 +201,14 @@ class MainActivity : AppCompatActivity() {
     private fun displayAnimalPickerDialog() {
         val dialog = DialogAnimalPicker(this, R.style.AnimalDialog)
         dialog.show()
+        fabMenu.close(true)
+    }
+
+    private fun displayNoteDialog() {
+        val dialog = AddNoteDialog(this, R.style.NoteDialog)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        dialog.setCurrentAnimalKey(currentAnimal?.key ?: "")
         fabMenu.close(true)
     }
 

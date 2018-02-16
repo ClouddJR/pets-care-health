@@ -77,6 +77,7 @@ class AnimalsRepository {
         databaseReference.child("animals").child(key).removeValue()
         databaseReference.child("measurements").child("weights").child(key).removeValue()
         databaseReference.child("measurements").child("heights").child(key).removeValue()
+        databaseReference.child("notes").child(key).removeValue()
     }
 
     fun getAnimals() {

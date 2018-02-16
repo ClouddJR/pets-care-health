@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/mainCard"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_margin="16dp">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+      android:id="@+id/titleTV"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:textSize="25sp"/>
+
+    <ImageButton
+      android:id="@+id/imageEdit"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:layout_alignParentEnd="true"
+      android:background="@android:color/transparent"
+      android:src="@drawable/ic_action_edit"/>
+
+    <TextView
+      android:id="@+id/dateTV"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_below="@id/titleTV"
+      android:textSize="20sp"/>
+
+    <TextView
+      android:id="@+id/contentTV"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_below="@id/dateTV"/>
+
+  </RelativeLayout>
+
+</android.support.v7.widget.CardView>

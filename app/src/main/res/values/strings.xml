@@ -5,6 +5,7 @@
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
+  <string name="main_activity_edit_animal_button">Edit Animal</string>
   <string name="main_activity_sign_out_dialog">Are you sure you want to sign out?</string>
   <string name="main_activity_sign_out_yes">Yes</string>
   <string name="main_activity_sign_out_no">No</string>
@@ -28,6 +29,7 @@
   <string name="fab_reminder">Reminder</string>
   <string name="fab_gallery">Gallery item</string>
 
+  <string name="dialog_picker_title">Choose a type of animal</string>
   <string name="dialog_picker_dog">dog</string>
   <string name="dialog_picker_cat">cat</string>
   <string name="dialog_picker_hamster">hamster</string>
@@ -51,13 +53,44 @@
   <string name="add_activity_other_category">Other</string>
   <string name="add_activity_toast_form">Name and date fields are required</string>
 
+
+  <string name="add_note_dialog_title">Add new note</string>
+  <string name="add_note_dialog_title_hint">Note title</string>
+  <string name="add_note_dialog_title_tv">Title</string>
+  <string name="add_note_dialog_content_hint">Note content</string>
+  <string name="add_note_dialog_content_tv">Content</string>
+  <string name="add_note_dialog_color_tv">Color</string>
+  <string name="add_note_dialog_button_text">Add note</string>
+  <string name="add_note_dialog_toast_form_invalid">Provide a title and content for this note</string>
+
+
+  <string name="edit_note_dialog_title">Edit note</string>
+  <string name="edit_note_dialog_title_hint">Note title</string>
+  <string name="edit_note_dialog_title_tv">Title</string>
+  <string name="edit_note_dialog_content_hint">Note content</string>
+  <string name="edit_note_dialog_content_tv">Content</string>
+  <string name="edit_note_dialog_color_tv">Color</string>
+  <string name="edit_note_dialog_button_text">Save changes</string>
+  <string name="edit_note_dialog_toast_form_invalid">Provide a title and content for this note</string>
+  <string name="edit_note_dialog_delete_button">Delete note</string>
+  <string name="edit_note_dialog_delete_question">Are you sure you want to delete this note?</string>
+  <string name="edit_note_dialog_delete_YES">Yes</string>
+  <string name="edit_note_dialog_delete_NO">No</string>
+
+
   <string-array name="gender">
     <item>Male</item>
     <item>Female</item>
   </string-array>
 
+  <string name="edit_activity_title">Edit Animal</string>
   <string name="edit_activity_button_save">Save Changes</string>
   <string name="edit_activity_button_delete">Delete Animal</string>
+  <string name="edit_activity_dialog_back_pressed_question">Are you sure? All changes will be lost</string>
+  <string name="edit_activity_dialog_delete_question">Are you sure you want to delete this animal?</string>
+  <string name="edit_activity_dialog_ok">OK</string>
+  <string name="edit_activity_dialog_cancel">Cancel</string>
+
 
   <string name="login_activity_title">LoginActivity</string>
   <string name="login_activity_email">Email address</string>
@@ -79,6 +112,7 @@
   <string name="info_fragment_weight_chart_no_data">Click button below to add weight values</string>
   <string name="info_fragment_weight_chart_label">Weight</string>
   <string name="info_fragment_height_chart_label">Height</string>
+  <string name="info_fragment_more_button">more</string>
 
   <string name="dialog_chart_trashImageView_description">trash icon</string>
   <string name="dialog_chart_value_placeholder">value</string>
@@ -89,9 +123,15 @@
   <string name="dialog_chart_adding_dialog_value">Enter a value</string>
   <string name="dialog_chart_adding_dialog_positive_button">OK</string>
   <string name="dialog_chart_adding_dialog_negative_button">Cancel</string>
-  <string name="fragment_info_more_button">more</string>
-  <string name="main_activity_edit_animal_button">Edit Animal</string>
-  <string name="title_activity_edit_animal">Edit Animal</string>
-
+  <string name="info_fragment_general">General</string>
+  <string name="info_fragment_name">name:</string>
+  <string name="info_fragment_date">date:</string>
+  <string name="info_fragment_type">type:</string>
+  <string name="info_fragment_other">Other</string>
+  <string name="info_fragment_breed">breed:</string>
+  <string name="info_fragment_color">color:</string>
+  <string name="info_fragment_gender">gender:</string>
+  <string name="info_fragment_height_values">Height Values</string>
+  <string name="info_fragment_weight_values">Weight Values</string>
 
 </resources>

@@ -55,7 +55,11 @@ dependencies {
 
     //anko
     compile "org.jetbrains.anko:anko:0.10.4"
+
+    //Color Picker
+    compile 'petrov.kristiyan:colorpicker-library:1.1.8'
 }
+
 repositories {
     mavenCentral()
     google()

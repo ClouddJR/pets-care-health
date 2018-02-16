@@ -3,4 +3,22 @@
   <color name="colorPrimary">#4CAF50</color>
   <color name="colorPrimaryDark">#388E3C</color>
   <color name="colorAccent">#FFC107</color>
+
+
+  <string-array name="colors">
+    <item>#80d8ff</item>
+    <item>#ff8a80</item>
+    <item>#ffd180</item>
+    <item>#ffffff</item>
+    <item>#ffff8d</item>
+    <item>#ccff90</item>
+    <item>#a7ffeb</item>
+    <item>#82b1ff</item>
+    <item>#b388ff</item>
+    <item>#f8bbd0</item>
+    <item>#d7ccc8</item>
+    <item>#cfd8dc</item>
+  </string-array>
+
+
 </resources>

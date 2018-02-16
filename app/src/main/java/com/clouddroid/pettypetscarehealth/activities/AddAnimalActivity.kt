@@ -77,11 +77,11 @@ class AddAnimalActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        alert("Are you sure? All changes will be lost") {
-            positiveButton("OK") {
+        alert(R.string.edit_activity_dialog_back_pressed_question) {
+            positiveButton(R.string.edit_activity_dialog_ok) {
                 super.onBackPressed()
             }
-            negativeButton("Cancel") {
+            negativeButton(R.string.edit_activity_dialog_cancel) {
                 it.dismiss()
             }
         }.show()

@@ -71,11 +71,11 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     private fun showMainView() {
-        main_scroll_view.visibility = View.VISIBLE
+        main_scroll_view?.visibility = View.VISIBLE
     }
 
     private fun hideMainView() {
-        main_scroll_view.visibility = View.GONE
+        main_scroll_view?.visibility = View.GONE
     }
 
     private fun updateCurrentAnimal(chosenAnimal: Animal) {

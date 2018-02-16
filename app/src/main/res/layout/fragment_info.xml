@@ -63,7 +63,7 @@
               android:layout_column="0"
               android:layout_columnSpan="2"
               android:layout_row="0"
-              android:text="General"
+              android:text="@string/info_fragment_general"
               android:textSize="18sp"/>
 
             <TextView
@@ -72,7 +72,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="1"
-              android:text="name: "/>
+              android:text="@string/info_fragment_name"/>
 
             <TextView
               android:id="@+id/petNameTextView"
@@ -81,7 +81,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="1"
-              android:text="Jazon"
               android:textSize="15sp"/>
 
             <TextView
@@ -90,7 +89,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="2"
-              android:text="date: "/>
+              android:text="@string/info_fragment_date"/>
 
             <TextView
               android:id="@+id/petDateTextView"
@@ -99,7 +98,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="2"
-              android:text="2016-5-16"
               android:textSize="15sp"/>
 
             <TextView
@@ -108,7 +106,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="3"
-              android:text="type: "/>
+              android:text="@string/info_fragment_type"/>
 
             <TextView
               android:id="@+id/petTypeTextView"
@@ -117,7 +115,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="3"
-              android:text="dog"
               android:textSize="15sp"/>
 
           </GridLayout>
@@ -153,7 +150,7 @@
               android:layout_column="0"
               android:layout_columnSpan="2"
               android:layout_row="0"
-              android:text="Other"
+              android:text="@string/info_fragment_other"
               android:textSize="18sp"/>
 
             <TextView
@@ -162,7 +159,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="1"
-              android:text="breed: "/>
+              android:text="@string/info_fragment_breed"/>
 
             <TextView
               android:id="@+id/petBreedTextView"
@@ -171,7 +168,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="1"
-              android:text="German Shepherd"
               android:textSize="15sp"/>
 
             <TextView
@@ -180,7 +176,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="2"
-              android:text="color: "/>
+              android:text="@string/info_fragment_color"/>
 
             <TextView
               android:id="@+id/petColorTextView"
@@ -189,7 +185,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="2"
-              android:text="brown"
               android:textSize="15sp"/>
 
             <TextView
@@ -198,7 +193,7 @@
               android:layout_margin="5dp"
               android:layout_column="0"
               android:layout_row="3"
-              android:text="gender: "/>
+              android:text="@string/info_fragment_gender"/>
 
             <TextView
               android:id="@+id/petGenderTextView"
@@ -207,7 +202,6 @@
               android:layout_margin="5dp"
               android:layout_column="1"
               android:layout_row="3"
-              android:text="male"
               android:textSize="15sp"/>
 
           </GridLayout>
@@ -228,7 +222,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Height Values"/>
+        android:text="@string/info_fragment_height_values"/>
 
       <Button
         android:id="@+id/moreButtonHeight"
@@ -236,7 +230,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="end"
-        android:text="@string/fragment_info_more_button"/>
+        android:text="@string/info_fragment_more_button"/>
 
       <android.support.v7.widget.RecyclerView
         android:id="@+id/heightRV"
@@ -260,7 +254,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Weight Values"/>
+        android:text="@string/info_fragment_weight_values"/>
 
       <Button
         android:id="@+id/moreButtonWeight"
@@ -268,7 +262,7 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="end"
-        android:text="@string/fragment_info_more_button"/>
+        android:text="@string/info_fragment_more_button"/>
 
       <android.support.v7.widget.RecyclerView
         android:id="@+id/weightRV"

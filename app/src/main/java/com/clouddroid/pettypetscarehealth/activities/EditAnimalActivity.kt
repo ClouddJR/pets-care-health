@@ -101,12 +101,12 @@ class EditAnimalActivity : AppCompatActivity() {
             }
         }
         deleteAnimalButton.setOnClickListener {
-            alert("Are you sure you want to delete this animal?") {
-                positiveButton("OK") {
+            alert(R.string.edit_activity_dialog_delete_question) {
+                positiveButton(R.string.edit_activity_dialog_ok) {
                     animalsRepository.deleteAnimal(passedAnimalKey)
                     finish()
                 }
-                negativeButton("Cancel") {
+                negativeButton(R.string.edit_activity_dialog_cancel) {
                     it.dismiss()
                 }
             }.show()
@@ -168,11 +168,11 @@ class EditAnimalActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        alert("Are you sure? All changes will be lost") {
-            positiveButton("OK") {
+        alert(R.string.edit_activity_dialog_back_pressed_question) {
+            positiveButton(R.string.edit_activity_dialog_ok) {
                 super.onBackPressed()
             }
-            negativeButton("Cancel") {
+            negativeButton(R.string.edit_activity_dialog_cancel) {
                 it.dismiss()
             }
         }.show()
