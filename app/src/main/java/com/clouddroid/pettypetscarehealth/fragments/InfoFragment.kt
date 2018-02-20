@@ -17,6 +17,7 @@ import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.model.MeasurementValue
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_info.*
 import java.io.File
 
@@ -49,17 +50,16 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
 
     private fun observeAnimalData() {
         animalViewModel?.getSelectedAnimal()?.observe(activity!!, Observer {
-
             if (isAnimalEmpty(it)) {
                 hideMainView()
             } else {
                 it?.let {
                     showMainView()
                     updateCurrentAnimal(it)
-                    updateImage(it)
                     updateGeneralInfo(it)
                     updateOtherInfo(it)
                     updateMeasurementValues(it)
+                    updateImage(it)
                 }
             }
 
@@ -71,11 +71,13 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     private fun showMainView() {
+        noAnimalTextView?.visibility = View.GONE
         main_scroll_view?.visibility = View.VISIBLE
     }
 
     private fun hideMainView() {
         main_scroll_view?.visibility = View.GONE
+        noAnimalTextView?.visibility = View.VISIBLE
     }
 
     private fun updateCurrentAnimal(chosenAnimal: Animal) {
@@ -83,8 +85,12 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     private fun updateImage(pet: Animal) {
-        if (petImageView != null && pet.imageUri != "") {
-            Glide.with(context!!).load(File(pet.imageUri)).into(petImageView)
+        if (File(pet.imageCachePath).exists() && petImageView != null) {
+            Glide.with(context!!).load(File(pet.imageCachePath)).into(petImageView)
+        } else if (petImageView != null && pet.imagePath != "") {
+            Glide.with(context!!).load(FirebaseStorage.getInstance().getReference(pet.imagePath)).into(petImageView)
+        } else if (petImageView != null) {
+            Glide.with(context!!).load(R.drawable.paw).into(petImageView)
         }
     }
 
@@ -146,14 +152,45 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     override fun onHeightValuesLoaded(list: List<MeasurementValue>) {
-        heightAdapter.initValuesList(list)
-        heightAdapter.notifyDataSetChanged()
+        if (list.isEmpty()) {
+            hideHeightRV()
+        } else {
+            showHeightRV()
+            heightAdapter.initValuesList(list)
+            heightAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onWeightValuesLoaded(list: List<MeasurementValue>) {
-        weightAdapter.initValuesList(list)
-        weightAdapter.notifyDataSetChanged()
+        if (list.isEmpty()) {
+            hideWeightRV()
+        } else {
+            showWeightRV()
+            weightAdapter.initValuesList(list)
+            weightAdapter.notifyDataSetChanged()
+        }
     }
+
+    private fun hideHeightRV() {
+        heightRV.visibility = View.GONE
+        noHeightTV.visibility = View.VISIBLE
+    }
+
+    private fun showHeightRV() {
+        noHeightTV.visibility = View.GONE
+        heightRV.visibility = View.VISIBLE
+    }
+
+    private fun hideWeightRV() {
+        weightRV.visibility = View.GONE
+        noWeightTV.visibility = View.VISIBLE
+    }
+
+    private fun showWeightRV() {
+        noWeightTV.visibility = View.GONE
+        weightRV.visibility = View.VISIBLE
+    }
+
 
 }
 

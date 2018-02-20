@@ -18,7 +18,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
-import com.clouddroid.pettypetscarehealth.repositories.StorageRepository
+import com.clouddroid.pettypetscarehealth.repositories.ImagesRepository
+import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatDate
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_add_animal.*
 import kotlinx.android.synthetic.main.content_add_animal.*
@@ -32,7 +33,9 @@ class AddAnimalActivity : AppCompatActivity() {
 
     private val writeRequestCode = 1234
     private val animalsRepository = AnimalsRepository()
+    private val imagesRepository = ImagesRepository()
     private var imageUri: Uri? = null
+    private var animalKey = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +60,13 @@ class AddAnimalActivity : AppCompatActivity() {
         dateEditText.setOnClickListener(showDatePicker)
         addAnimalButton.setOnClickListener {
             if (isFormValid()) {
-                animalsRepository.addNewAnimal(imageUri ?: Uri.parse(""),
+                animalKey = animalsRepository.generateKey()
+                var imagePath: String? = ""
+                if (imageUri != null) {
+                    imagePath = imagesRepository.addImageForAnimal(animalKey, imageUri!!)
+                }
+
+                animalsRepository.addNewAnimal(animalKey, imagePath ?: "", imageUri?.path ?: "",
                         nameEditText.text.toString(),
                         dateEditText.text.toString(),
                         replaceSpacesWithNewLines(breedEditText.text.toString()),
@@ -77,11 +86,11 @@ class AddAnimalActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        alert(R.string.edit_activity_dialog_back_pressed_question) {
-            positiveButton(R.string.edit_activity_dialog_ok) {
+        alert(R.string.dialog_back_pressed_question) {
+            positiveButton(R.string.dialog_ok_button) {
                 super.onBackPressed()
             }
-            negativeButton(R.string.edit_activity_dialog_cancel) {
+            negativeButton(R.string.dialog_cancel_button) {
                 it.dismiss()
             }
         }.show()
@@ -101,7 +110,7 @@ class AddAnimalActivity : AppCompatActivity() {
         }
 
         if (isResultComingWithImageAfterCropping(requestCode)) {
-            saveImageToStorageAndDisplayHere(imageData)
+            displayImageHere(imageData)
         }
     }
 
@@ -128,9 +137,9 @@ class AddAnimalActivity : AppCompatActivity() {
         return requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
     }
 
-    private fun saveImageToStorageAndDisplayHere(data: Intent?) {
+    private fun displayImageHere(data: Intent?) {
         data?.let {
-            imageUri = StorageRepository.saveFile(CropImage.getActivityResult(data).uri as Uri)
+            imageUri = CropImage.getActivityResult(data).uri as Uri
             Glide.with(this).load(File(imageUri?.path)).into(petImage)
         }
     }
@@ -143,25 +152,9 @@ class AddAnimalActivity : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, chosenYear, chosenMonth, chosenDay ->
-            val date = formatDate(chosenYear, chosenMonth + 1, chosenDay)
+            val date = formatDate(chosenYear, chosenMonth, chosenDay)
             dateEditText.setText(date)
         }, year, month, day).show()
-    }
-
-    private fun formatDate(year: Int, month: Int, day: Int): String {
-        val formattedMonth = if (month < 10) {
-            "0$month"
-        } else {
-            "$month"
-        }
-
-        val formattedDay = if (day < 10) {
-            "0$day"
-        } else {
-            "$day"
-        }
-
-        return "$year-$formattedMonth-$formattedDay"
     }
 
     private fun isFormValid(): Boolean {
@@ -178,7 +171,6 @@ class AddAnimalActivity : AppCompatActivity() {
 
         return true
     }
-
 
     private fun askForPermissionsAndDisplayCropActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

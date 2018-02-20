@@ -12,10 +12,12 @@ data class Animal(val key: String = "",
                   val breed: String = "",
                   val color: String = "",
                   val gender: String = "",
-                  val imageUri: String = "",
+                  val imagePath: String = "",
+                  val imageCachePath: String = "",
                   val type: String = "") : Parcelable {
 
     constructor(source: Parcel) : this(
+            source.readString(),
             source.readString(),
             source.readString(),
             source.readString(),
@@ -35,7 +37,8 @@ data class Animal(val key: String = "",
         writeString(breed)
         writeString(color)
         writeString(gender)
-        writeString(imageUri)
+        writeString(imagePath)
+        writeString(imageCachePath)
         writeString(type)
     }
 

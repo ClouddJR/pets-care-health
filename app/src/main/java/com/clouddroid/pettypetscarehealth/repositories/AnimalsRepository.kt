@@ -1,6 +1,5 @@
 package com.clouddroid.pettypetscarehealth.repositories
 
-import android.net.Uri
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.model.MeasurementValue
 import com.google.firebase.auth.FirebaseAuth
@@ -50,10 +49,10 @@ class AnimalsRepository {
         this.weightValuesListener = listener
     }
 
-    fun addNewAnimal(imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
-        val key = databaseReference.push().key
+    fun addNewAnimal(key: String, imagePath: String, imageCachePath: String, name: String, date: String, breed: String, color: String, gender: String, type: String) {
         databaseReference.child("animals").child(key).child("key").setValue(key)
-        databaseReference.child("animals").child(key).child("imageUri").setValue(imageUri.path)
+        databaseReference.child("animals").child(key).child("imagePath").setValue(imagePath)
+        databaseReference.child("animals").child(key).child("imageCachePath").setValue(imageCachePath)
         databaseReference.child("animals").child(key).child("name").setValue(name)
         databaseReference.child("animals").child(key).child("date").setValue(date)
         databaseReference.child("animals").child(key).child("breed").setValue(breed)
@@ -62,9 +61,14 @@ class AnimalsRepository {
         databaseReference.child("animals").child(key).child("type").setValue(type)
     }
 
-    fun editAnimal(key: String, imageUri: Uri, name: String, date: String, breed: String, color: String, gender: String, type: String) {
+    fun generateKey(): String {
+        return databaseReference.push().key
+    }
+
+    fun editAnimal(key: String, imagePath: String, imageCachePath: String, name: String, date: String, breed: String, color: String, gender: String, type: String) {
         databaseReference.child("animals").child(key).child("key").setValue(key)
-        databaseReference.child("animals").child(key).child("imageUri").setValue(imageUri.path)
+        databaseReference.child("animals").child(key).child("imagePath").setValue(imagePath)
+        databaseReference.child("animals").child(key).child("imageCachePath").setValue(imageCachePath)
         databaseReference.child("animals").child(key).child("name").setValue(name)
         databaseReference.child("animals").child(key).child("date").setValue(date)
         databaseReference.child("animals").child(key).child("breed").setValue(breed)
@@ -73,11 +77,15 @@ class AnimalsRepository {
         databaseReference.child("animals").child(key).child("type").setValue(type)
     }
 
-    fun deleteAnimal(key: String) {
-        databaseReference.child("animals").child(key).removeValue()
-        databaseReference.child("measurements").child("weights").child(key).removeValue()
-        databaseReference.child("measurements").child("heights").child(key).removeValue()
-        databaseReference.child("notes").child(key).removeValue()
+    fun deleteAnimal(animal: Animal?) {
+        databaseReference.child("animals").child(animal?.key).removeValue()
+        databaseReference.child("measurements").child("weights").child(animal?.key).removeValue()
+        databaseReference.child("measurements").child("heights").child(animal?.key).removeValue()
+        databaseReference.child("notes").child(animal?.key).removeValue()
+        databaseReference.child("medicals").child(animal?.key).removeValue()
+        ImagesRepository().deleteImage(animal?.imagePath ?: "")
+        ImagesRepository().deleteImagesForAnimal(animal?.key ?: "")
+        databaseReference.child("images").child(animal?.key).removeValue()
     }
 
     fun getAnimals() {
@@ -91,7 +99,6 @@ class AnimalsRepository {
                 animalsReceived?.children?.let { it.mapTo(animalsTempList) { it.getValue(Animal::class.java) as Animal } }
                 animalListListener?.onAnimalsListLoaded(animalsTempList)
             }
-
 
         })
     }

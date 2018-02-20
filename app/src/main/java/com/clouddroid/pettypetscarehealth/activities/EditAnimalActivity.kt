@@ -20,7 +20,9 @@ import com.bumptech.glide.Glide
 import com.clouddroid.pettypetscarehealth.R
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
-import com.clouddroid.pettypetscarehealth.repositories.StorageRepository
+import com.clouddroid.pettypetscarehealth.repositories.ImagesRepository
+import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatDate
+import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.activity_edit_animal.*
 import kotlinx.android.synthetic.main.content_edit_animal.*
@@ -35,8 +37,10 @@ class EditAnimalActivity : AppCompatActivity() {
     private val writeRequestCode = 1234
     private val animalsRepository = AnimalsRepository()
     private var passedAnimal: Animal? = null
+    private var imageCacheUri: Uri? = null
     private var imageUri: Uri? = null
     private var passedAnimalKey: String = ""
+    private val imagesRepository = ImagesRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +66,8 @@ class EditAnimalActivity : AppCompatActivity() {
         val intent = intent
         passedAnimal = intent.extras["selectedAnimal"] as Animal
         passedAnimalKey = passedAnimal?.key ?: ""
-        imageUri = Uri.parse(passedAnimal?.imageUri)
+        imageCacheUri = Uri.parse(passedAnimal?.imageCachePath)
+        imageUri = Uri.parse(passedAnimal?.imagePath)
     }
 
     private fun fillViewsWithPassedData() {
@@ -76,10 +81,11 @@ class EditAnimalActivity : AppCompatActivity() {
             "Female" -> genderSpinner.setSelection(1)
         }
 
-        if (passedAnimal?.imageUri?.isNotEmpty() == true) {
-            Glide.with(this).load(File(passedAnimal?.imageUri)).into(petImage)
-        } else {
-            Glide.with(this).load(R.drawable.paw).into(petImage)
+        when {
+            File(passedAnimal?.imageCachePath).exists() -> Glide.with(this).load(File(passedAnimal?.imageCachePath)).into(petImage)
+            passedAnimal?.imagePath?.isNotEmpty() == true -> Glide.with(this).load(FirebaseStorage.getInstance().getReference(passedAnimal?.imagePath
+                    ?: "")).into(petImage)
+            else -> Glide.with(this).load(R.drawable.paw).into(petImage)
         }
     }
 
@@ -88,25 +94,28 @@ class EditAnimalActivity : AppCompatActivity() {
         dateEditText.setOnClickListener(showDatePicker)
         addAnimalButton.setOnClickListener {
             if (isFormValid()) {
-                animalsRepository.editAnimal(passedAnimalKey, imageUri ?: Uri.parse(""),
+                val imagePath = imagesRepository.addImageForAnimal(passedAnimalKey, imageCacheUri!!)
+
+                animalsRepository.editAnimal(passedAnimalKey, imagePath, imageCacheUri?.path ?: "",
                         nameEditText.text.toString(),
                         dateEditText.text.toString(),
                         replaceSpacesWithNewLines(breedEditText.text.toString()),
                         colorEditText.text.toString(),
                         (genderSpinner.getChildAt(0) as TextView).text.toString(),
-                        passedAnimal?.type ?: "unknown")
+                        passedAnimal?.type ?: "")
                 finish()
             } else {
                 Toast.makeText(this, R.string.add_activity_toast_form, Toast.LENGTH_LONG).show()
             }
         }
+
         deleteAnimalButton.setOnClickListener {
             alert(R.string.edit_activity_dialog_delete_question) {
-                positiveButton(R.string.edit_activity_dialog_ok) {
-                    animalsRepository.deleteAnimal(passedAnimalKey)
+                positiveButton(R.string.dialog_ok_button) {
+                    animalsRepository.deleteAnimal(passedAnimal)
                     finish()
                 }
-                negativeButton(R.string.edit_activity_dialog_cancel) {
+                negativeButton(R.string.dialog_cancel_button) {
                     it.dismiss()
                 }
             }.show()
@@ -124,25 +133,9 @@ class EditAnimalActivity : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, chosenYear, chosenMonth, chosenDay ->
-            val date = formatDate(chosenYear, chosenMonth + 1, chosenDay)
+            val date = formatDate(chosenYear, chosenMonth, chosenDay)
             dateEditText.setText(date)
         }, year, month, day).show()
-    }
-
-    private fun formatDate(year: Int, month: Int, day: Int): String {
-        val formattedMonth = if (month < 10) {
-            "0$month"
-        } else {
-            "$month"
-        }
-
-        val formattedDay = if (day < 10) {
-            "0$day"
-        } else {
-            "$day"
-        }
-
-        return "$year-$formattedMonth-$formattedDay"
     }
 
     private fun isFormValid(): Boolean {
@@ -168,11 +161,11 @@ class EditAnimalActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        alert(R.string.edit_activity_dialog_back_pressed_question) {
-            positiveButton(R.string.edit_activity_dialog_ok) {
+        alert(R.string.dialog_back_pressed_question) {
+            positiveButton(R.string.dialog_ok_button) {
                 super.onBackPressed()
             }
-            negativeButton(R.string.edit_activity_dialog_cancel) {
+            negativeButton(R.string.dialog_cancel_button) {
                 it.dismiss()
             }
         }.show()
@@ -191,7 +184,7 @@ class EditAnimalActivity : AppCompatActivity() {
         }
 
         if (isResultComingWithImageAfterCropping(requestCode)) {
-            saveImageToStorageAndDisplayHere(imageData)
+            displayImageHere(imageData)
         }
     }
 
@@ -218,10 +211,10 @@ class EditAnimalActivity : AppCompatActivity() {
         return requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
     }
 
-    private fun saveImageToStorageAndDisplayHere(data: Intent?) {
+    private fun displayImageHere(data: Intent?) {
         data?.let {
-            imageUri = StorageRepository.saveFile(CropImage.getActivityResult(data).uri as Uri)
-            Glide.with(this).load(File(imageUri?.path)).into(petImage)
+            imageCacheUri = CropImage.getActivityResult(data).uri as Uri
+            Glide.with(this).load(File(imageCacheUri?.path)).into(petImage)
         }
     }
 
@@ -229,7 +222,6 @@ class EditAnimalActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), writeRequestCode)
         } else {
-            //permission already granted, so display crop dialog
             CropImage.startPickImageActivity(this)
         }
     }

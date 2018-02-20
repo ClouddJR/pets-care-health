@@ -19,9 +19,9 @@
       android:theme="@style/Base.Theme.AppCompat"/>
 
     <activity
-      android:screenOrientation="portrait"
       android:label="@string/app_name"
       android:name=".activities.MainActivity"
+      android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar.Transparent">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -58,6 +58,11 @@
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.clouddroid.pettypetscarehealth.activities.MainActivity"/>
     </activity>
+
+    <receiver
+      android:name=".receivers.ReminderReceiver">
+
+    </receiver>
 
   </application>
 

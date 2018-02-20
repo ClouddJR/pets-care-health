@@ -13,10 +13,10 @@ import kotlinx.android.synthetic.main.dialog_note_detail.view.*
 import kotlinx.android.synthetic.main.note_item.view.*
 import org.jetbrains.anko.layoutInflater
 
-
 /**
- * Created by arkadiusz on 15.02.18.
+ * Created by arkadiusz on 15.02.18
  */
+
 class NotesRV : RecyclerView.Adapter<NotesRV.ViewHolder>() {
 
     private var notesList: List<Note>? = null

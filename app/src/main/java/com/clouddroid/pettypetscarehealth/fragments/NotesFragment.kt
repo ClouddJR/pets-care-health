@@ -17,8 +17,9 @@ import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import kotlinx.android.synthetic.main.fragment_notes.*
 
 /**
- * Created by arkadiusz on 15.02.18.
+ * Created by arkadiusz on 15.02.18
  */
+
 class NotesFragment : Fragment(), NotesRepository.NotesListListener {
 
     private var animalViewModel: AnimalViewModel? = null
@@ -71,8 +72,23 @@ class NotesFragment : Fragment(), NotesRepository.NotesListListener {
     }
 
     override fun onNotesLoaded(list: List<Note>) {
-        notesAdapter.initNotesList(list)
-        notesAdapter.notifyDataSetChanged()
+        if (list.isEmpty()) {
+            displayNoDataText()
+        } else {
+            hideNoDataText()
+            notesAdapter.initNotesList(list)
+            notesAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun displayNoDataText() {
+        notesRV?.visibility = View.GONE
+        noNotesTextView?.visibility = View.VISIBLE
+    }
+
+    private fun hideNoDataText() {
+        noNotesTextView?.visibility = View.GONE
+        notesRV?.visibility = View.VISIBLE
     }
 
 

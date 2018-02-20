@@ -2,7 +2,9 @@
 <android.support.design.widget.CoordinatorLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:fab="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/main_coordinator"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="com.clouddroid.pettypetscarehealth.activities.MainActivity">
@@ -48,8 +50,10 @@
 
     </android.support.v7.widget.Toolbar>
 
+
   </android.support.design.widget.AppBarLayout>
 
   <include layout="@layout/layout_content_main"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

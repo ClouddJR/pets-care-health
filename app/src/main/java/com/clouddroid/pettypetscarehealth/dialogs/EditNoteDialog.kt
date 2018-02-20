@@ -31,16 +31,16 @@ class EditNoteDialog(private val passedContext: Context, themeResId: Int) : Dial
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_edit_note)
         setOnColorImageClick()
-        setOnAddNoteButtonClick()
+        setOnEditNoteButtonClick()
         fillFormWithPassedData()
     }
 
     override fun dismiss() {
-        passedContext.alert(R.string.edit_activity_dialog_back_pressed_question) {
-            positiveButton(R.string.edit_activity_dialog_ok) {
+        passedContext.alert(R.string.dialog_back_pressed_question) {
+            positiveButton(R.string.dialog_ok_button) {
                 super.dismiss()
             }
-            negativeButton(R.string.edit_activity_dialog_cancel) {
+            negativeButton(R.string.dialog_cancel_button) {
                 it.dismiss()
             }
         }.show()
@@ -80,7 +80,7 @@ class EditNoteDialog(private val passedContext: Context, themeResId: Int) : Dial
         }
     }
 
-    private fun setOnAddNoteButtonClick() {
+    private fun setOnEditNoteButtonClick() {
         addNoteButton.setOnClickListener {
             if (isFormValid()) {
                 notesRepository.editNote(passedAnimal?.key ?: "", passedNote?.key

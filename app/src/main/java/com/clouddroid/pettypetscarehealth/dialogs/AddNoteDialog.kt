@@ -34,18 +34,36 @@ class AddNoteDialog(private val passedContext: Context, themeResId: Int) : Dialo
 
 
     override fun dismiss() {
-        passedContext.alert(R.string.edit_activity_dialog_back_pressed_question) {
-            positiveButton(R.string.edit_activity_dialog_ok) {
-                super.dismiss()
-            }
-            negativeButton(R.string.edit_activity_dialog_cancel) {
-                it.dismiss()
-            }
-        }.show()
+        if (isSomethingInForm()) {
+            passedContext.alert(R.string.dialog_back_pressed_question) {
+                positiveButton(R.string.dialog_ok_button) {
+                    super.dismiss()
+                }
+                negativeButton(R.string.dialog_cancel_button) {
+                    it.dismiss()
+                }
+            }.show()
+        } else {
+            super.dismiss()
+        }
+    }
+
+    private fun isSomethingInForm(): Boolean {
+        return titleEditText.text.isNotEmpty() ||
+                contentEditText.text.isNotEmpty()
+
     }
 
     fun setCurrentAnimalKey(key: String) {
         animalKey = key
+        checkIfAnimalIsSet()
+    }
+
+    private fun checkIfAnimalIsSet() {
+        if (animalKey.isEmpty()) {
+            passedContext.toast("Add animal first")
+            super.dismiss()
+        }
     }
 
     private fun setOnColorImageClick() {
@@ -65,7 +83,6 @@ class AddNoteDialog(private val passedContext: Context, themeResId: Int) : Dialo
             colorPicker.show()
         }
     }
-
 
     private fun setOnAddNoteButtonClick() {
         addNoteButton.setOnClickListener {

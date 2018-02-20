@@ -18,14 +18,17 @@
           android:title="@string/menu_nav_notes">
         </item>
         <item
+          android:id="@+id/menu_nav_medical"
           android:icon="@drawable/ic_local_hospital"
           android:title="@string/menu_nav_medical">
         </item>
         <item
+          android:id="@+id/menu_nav_gallery"
           android:icon="@drawable/ic_perm_media"
           android:title="@string/menu_nav_gallery">
         </item>
         <item
+          android:id="@+id/menu_nav_reminders"
           android:icon="@drawable/ic_action_bell"
           android:title="@string/menu_nav_reminders">
         </item>

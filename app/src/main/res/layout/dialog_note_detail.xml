@@ -14,10 +14,11 @@
 
     <TextView
       android:id="@+id/titleTV"
+      android:textStyle="bold"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_alignParentTop="true"
-      android:textSize="25sp"/>
+      android:textSize="21sp"/>
 
     <ImageButton
       android:id="@+id/imageEdit"
@@ -33,7 +34,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
       android:layout_below="@id/titleTV"
-      android:textSize="20sp"/>
+      android:textSize="17sp"/>
 
     <TextView
       android:id="@+id/contentTV"

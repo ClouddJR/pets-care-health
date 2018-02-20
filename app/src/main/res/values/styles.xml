@@ -41,6 +41,7 @@
     <item name="android:windowContentTransitions">true</item>
   </style>
 
+
   <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
@@ -66,6 +67,7 @@
     <item name="android:windowAnimationStyle">@style/ChartDialogAnimation</item>
     <item name="android:windowBackground">@android:color/transparent</item>
     <item name="android:windowNoTitle">true</item>
+    <item name="android:colorAccent">@color/colorAccent</item>
   </style>
 
   <style name="ChartValuesDialog" parent="@android:style/Theme.Dialog">

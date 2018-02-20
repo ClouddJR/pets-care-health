@@ -1,9 +1,15 @@
 package com.clouddroid.pettypetscarehealth.activities
 
+import PreferenceUtils.defaultPrefs
+import PreferenceUtils.get
+import PreferenceUtils.set
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
@@ -17,13 +23,13 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.clouddroid.pettypetscarehealth.R
-import com.clouddroid.pettypetscarehealth.dialogs.AddNoteDialog
-import com.clouddroid.pettypetscarehealth.dialogs.DialogAnimalPicker
-import com.clouddroid.pettypetscarehealth.fragments.InfoFragment
-import com.clouddroid.pettypetscarehealth.fragments.NotesFragment
+import com.clouddroid.pettypetscarehealth.dialogs.*
+import com.clouddroid.pettypetscarehealth.fragments.*
 import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.repositories.UserRepository
+import com.clouddroid.pettypetscarehealth.utils.StorageUtils
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
+import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.layout_app_bar_main.*
 import kotlinx.android.synthetic.main.layout_content_main.*
 import kotlinx.android.synthetic.main.layout_drawer_main.*
@@ -33,13 +39,14 @@ import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private val fragmentManager = supportFragmentManager
-    private var activeFragment: Fragment = InfoFragment()
     private var animalViewModel: AnimalViewModel? = null
     private val userRepository = UserRepository()
     private var currentAnimal: Animal? = null
-
+    private val fragmentManager = supportFragmentManager
+    private var activeFragment: Fragment = InfoFragment()
     private var fragmentToBePlaced: Fragment? = null
+
+    private var galleryDialog: AddGalleryItemDialog? = null
     private var wasItemClicked: Boolean = false
 
 
@@ -88,6 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setEmptySelectedAnimal() {
+        currentAnimal = null
         animalViewModel?.setSelectedAnimal(Animal())
     }
 
@@ -119,6 +127,15 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.menu_nav_notes -> {
                         fragmentToBePlaced = NotesFragment()
+                    }
+                    R.id.menu_nav_medical -> {
+                        fragmentToBePlaced = MedicalsFragment()
+                    }
+                    R.id.menu_nav_gallery -> {
+                        fragmentToBePlaced = GalleryFragment()
+                    }
+                    R.id.menu_nav_reminders -> {
+                        fragmentToBePlaced = RemindersFragment()
                     }
                     R.id.menu_nav_sign_out -> {
                         displaySignOutDialog()
@@ -169,6 +186,9 @@ class MainActivity : AppCompatActivity() {
     private fun setFabOnClickListeners() {
         fabAnimal.setOnClickListener { displayAnimalPickerDialog() }
         fabNote.setOnClickListener { displayNoteDialog() }
+        fabMedical.setOnClickListener { displayMedicalDialog() }
+        fabGallery_item.setOnClickListener { displayGalleryItemDialog() }
+        fabReminder.setOnClickListener { displayReminderDialog() }
     }
 
     private fun initEditAnimalButton() {
@@ -176,7 +196,6 @@ class MainActivity : AppCompatActivity() {
             startActivity<EditAnimalActivity>("selectedAnimal" to currentAnimal)
         }
     }
-
 
     private fun displaySignOutDialog() {
         alert(R.string.main_activity_sign_out_dialog) {
@@ -212,10 +231,35 @@ class MainActivity : AppCompatActivity() {
         fabMenu.close(true)
     }
 
+    private fun displayMedicalDialog() {
+        val dialog = AddMedicalDialog(this, R.style.NoteDialog)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        dialog.setCurrentAnimalKey(currentAnimal?.key ?: "")
+        fabMenu.close(true)
+    }
+
+    private fun displayGalleryItemDialog() {
+        galleryDialog = AddGalleryItemDialog(this, R.style.NoteDialog)
+        galleryDialog?.setCanceledOnTouchOutside(false)
+        galleryDialog?.show()
+        galleryDialog?.setCurrentAnimalKey(currentAnimal?.key ?: "")
+        fabMenu.close(true)
+    }
+
+    private fun displayReminderDialog() {
+        val dialog = AddReminderDialog(this, R.style.NoteDialog)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+        dialog.setCurrentAnimalKey(currentAnimal?.key ?: "")
+        fabMenu.close(true)
+    }
+
     private fun setUpSpinner(listOfAnimals: List<Animal>) {
         val listOfNames = mutableListOf<String>()
         listOfAnimals.mapTo(listOfNames) { it.name }
 
+        val prefs = defaultPrefs(this)
         val adapter = ArrayAdapter(this, R.layout.spinner_animal_item, listOfNames)
         spinnerAnimals?.adapter = adapter
         spinnerAnimals?.onItemSelectedListener = object : OnItemSelectedListener {
@@ -223,6 +267,7 @@ class MainActivity : AppCompatActivity() {
                 (view as? TextView?)?.setTextColor(Color.WHITE)
                 animalViewModel?.setSelectedAnimal(listOfAnimals[i])
                 currentAnimal = listOfAnimals[i]
+                prefs["selectedPosition"] = i
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {
@@ -230,10 +275,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //terrible way of doing this but can't see the other possibility right now
-        spinnerAnimals?.setSelection(0, true)
+        if (prefs["selectedPosition"] ?: 0 < listOfAnimals.size) {
+            spinnerAnimals?.setSelection(prefs["selectedPosition", 0]!!, true)
+        }
         val view = spinnerAnimals.selectedView
         (view as? TextView)?.setTextColor(Color.WHITE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, imageData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, imageData)
+        if (galleryDialog?.isShowing == true && requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            imageData?.let {
+                galleryDialog?.setChosenImageUri(Uri.parse(StorageUtils.getPath(this, imageData.data)))
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            galleryDialog?.setPermissionGranted()
+        }
     }
 
 }

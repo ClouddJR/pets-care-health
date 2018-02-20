@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_margin="16dp"
+  android:background="@drawable/dialog_bg"
+  app:cardCornerRadius="20dp">
+
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <FrameLayout
+        android:id="@+id/colorFrame"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary">
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:text="@string/edit_reminder_dialog_title"
+          android:textColor="@android:color/white"
+          android:textSize="25sp"/>
+      </FrameLayout>
+
+
+      <android.support.v7.widget.GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/choice_grid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/colorFrame"
+        android:layout_centerHorizontal="true"
+        android:padding="4dp"
+        grid:alignmentMode="alignBounds"
+        grid:columnCount="2"
+        grid:rowOrderPreserved="false">
+
+        <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/edit_reminder_dialog_title_tv"
+          android:textColor="@color/colorPrimaryDark"
+          grid:layout_columnWeight="1"
+          grid:layout_gravity="fill_horizontal"/>
+
+        <EditText
+          android:id="@+id/titleEditText"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:hint="@string/edit_reminder_dialog_title_hint"
+          grid:layout_columnWeight="3"/>
+
+        <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/edit_reminder_dialog_date_tv"
+          android:textColor="@color/colorPrimaryDark"
+          grid:layout_columnWeight="1"
+          grid:layout_gravity="fill_horizontal"/>
+
+        <EditText
+          android:id="@+id/dateEditText"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:focusable="false"
+          android:hint="@string/edit_reminder_dialog_date_hint"
+          android:longClickable="false"
+          grid:layout_columnWeight="3"
+          grid:layout_gravity="fill_horizontal"/>
+
+
+        <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          grid:layout_columnSpan="2"
+          grid:layout_gravity="fill_horizontal">
+
+          <CheckBox
+            android:id="@+id/onceCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/edit_reminder_dialog_checkbox_text"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        </FrameLayout>
+
+
+        <TextView
+          android:id="@+id/repetitionTextView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:layout_marginTop="16dp"
+          android:gravity="center"
+          android:text="@string/edit_reminder_dialog_frequency_tv"
+          android:textColor="@color/colorPrimaryDark"
+          grid:layout_columnWeight="1"
+          grid:layout_gravity="fill_horizontal"/>
+
+        <Spinner
+          android:id="@+id/daysSpinner"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          grid:layout_columnWeight="3"
+          grid:layout_gravity="fill_horizontal"/>
+
+        <Spinner
+          android:id="@+id/intervalsSpinner"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          grid:layout_column="1"
+          grid:layout_columnWeight="3"
+          grid:layout_gravity="fill_horizontal"/>
+
+        <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:gravity="center"
+          grid:layout_columnSpan="2"
+          grid:layout_gravity="fill_horizontal">
+
+          <Button
+            android:id="@+id/deleteReminderButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/edit_reminder_dialog_button_delete_text"
+            android:textColor="@color/colorAccent"/>
+        </FrameLayout>
+
+
+        <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:gravity="center"
+          grid:layout_columnSpan="2"
+          grid:layout_gravity="fill_horizontal">
+
+          <Button
+            android:id="@+id/editReminderButton"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/button_add_bg"
+            android:text="@string/edit_reminder_dialog_button_text"
+            android:textColor="@android:color/white"/>
+        </FrameLayout>
+
+
+      </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
+
+  </ScrollView>
+
+</android.support.v7.widget.CardView>
