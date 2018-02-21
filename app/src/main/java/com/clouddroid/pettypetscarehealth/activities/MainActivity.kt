@@ -251,7 +251,7 @@ class MainActivity : AppCompatActivity() {
         val dialog = AddReminderDialog(this, R.style.NoteDialog)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
-        dialog.setCurrentAnimalKey(currentAnimal?.key ?: "")
+        dialog.setCurrentAnimal(currentAnimal ?: Animal())
         fabMenu.close(true)
     }
 

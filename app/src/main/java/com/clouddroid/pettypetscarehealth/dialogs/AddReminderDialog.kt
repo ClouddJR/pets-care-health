@@ -9,8 +9,10 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.clouddroid.pettypetscarehealth.R
+import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.model.Reminder
 import com.clouddroid.pettypetscarehealth.repositories.RemindersRepository
+import com.clouddroid.pettypetscarehealth.utils.DateUtils
 import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatDate
 import com.clouddroid.pettypetscarehealth.utils.RemindersUtils
 import kotlinx.android.synthetic.main.dialog_add_reminder.*
@@ -25,6 +27,7 @@ import java.util.*
 class AddReminderDialog(private val passedContext: Context, themeResId: Int) : Dialog(passedContext, themeResId) {
 
     private val remindersRepository = RemindersRepository()
+    private var passedAnimal: Animal? = null
     private var animalKey = ""
     private var chosenDay = 0
     private var chosenMonth = 0
@@ -62,8 +65,9 @@ class AddReminderDialog(private val passedContext: Context, themeResId: Int) : D
         return titleEditText.text.isNotEmpty() || dateEditText.text.isNotEmpty()
     }
 
-    fun setCurrentAnimalKey(key: String) {
-        animalKey = key
+    fun setCurrentAnimal(animal: Animal) {
+        animalKey = animal.key
+        passedAnimal = animal
         checkIfAnimalIsSet()
     }
 
@@ -103,7 +107,8 @@ class AddReminderDialog(private val passedContext: Context, themeResId: Int) : D
         TimePickerDialog(passedContext, TimePickerDialog.OnTimeSetListener { _, chosenHour, chosenMinute ->
             this.chosenHour = chosenHour
             this.chosenMinute = chosenMinute
-            date += " $chosenHour:$chosenMinute"
+            val time = DateUtils.formatTime(chosenHour, chosenMinute)
+            date += " $time"
             dateEditText.setText(date)
         }, hour, minute, true).show()
     }
@@ -156,12 +161,14 @@ class AddReminderDialog(private val passedContext: Context, themeResId: Int) : D
     }
 
     private fun generateReminderForSingleEvent(reminderKey: String): Reminder {
-        return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute, 0, "")
+        return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute, 0, "",
+                passedAnimal?.name ?: "")
     }
 
     private fun generateReminderForRepetitiveEvents(reminderKey: String): Reminder {
         return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute,
-                (daysSpinner.getChildAt(0) as TextView).text.toString().toInt(), (intervalsSpinner.getChildAt(0) as TextView).text.toString())
+                (daysSpinner.getChildAt(0) as TextView).text.toString().toInt(), (intervalsSpinner.getChildAt(0) as TextView).text.toString(),
+                passedAnimal?.name ?: "")
     }
 
 }

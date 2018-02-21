@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +16,12 @@ import com.clouddroid.pettypetscarehealth.model.GalleryItem
 import com.clouddroid.pettypetscarehealth.repositories.ImagesRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import kotlinx.android.synthetic.main.fragment_gallery.*
+import kotlinx.android.synthetic.main.layout_content_main.*
 
 /**
- * Created by arkadiusz on 16.02.18.
+ * Created by arkadiusz on 16.02.18
  */
+
 class GalleryFragment : Fragment(), ImagesRepository.ImagesListListener {
 
     private var animalViewModel: AnimalViewModel? = null
@@ -35,6 +38,7 @@ class GalleryFragment : Fragment(), ImagesRepository.ImagesListListener {
         observeAnimalData()
         setImagesListener()
         displayRecyclerView()
+        hideFABOnScroll()
     }
 
     private fun connectWithViewModel() {
@@ -87,5 +91,17 @@ class GalleryFragment : Fragment(), ImagesRepository.ImagesListListener {
     private fun hideNoDataText() {
         noImagesTextView?.visibility = View.GONE
         galleryRV?.visibility = View.VISIBLE
+    }
+
+    private fun hideFABOnScroll() {
+        galleryRV?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    activity?.fabMenu?.hideMenuButton(true)
+                } else if (dy < 0) {
+                    activity?.fabMenu?.showMenuButton(true)
+                }
+            }
+        })
     }
 }

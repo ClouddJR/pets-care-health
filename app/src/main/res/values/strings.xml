@@ -251,6 +251,16 @@
   <string name="reminder_item_date_tv">Date: \</string>
   <string name="reminder_item_repeating_tv">Repetition</string>
   <string name="reminder_item_text_tv">Title</string>
+  <string name="reminder_item_repetition_text_first_word">Every</string>
+  <string name="reminder_item_repetition_text_single_day">day</string>
+  <string name="reminder_item_repetition_text_multiple_days">days</string>
+  <string name="reminder_item_repetition_text_single_week">week</string>
+  <string name="reminder_item_repetition_text_multiple_weeks">weeks</string>
+  <string name="reminder_item_repetition_text_single_month">month</string>
+  <string name="reminder_item_repetition_text_multiple_months">months</string>
+  <string name="reminder_item_repetition_text_single_event">Only once</string>
 
+  <string name="notification_channel_name">Reminders</string>
+  <string name="notification_channel_description">Reminders related to animals from the app</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.clouddroid.pettypetscarehealth.repositories
 
-import android.util.Log.d
 import com.clouddroid.pettypetscarehealth.model.Reminder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -9,8 +8,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 /**
- * Created by arkadiusz on 19.02.18.
+ * Created by arkadiusz on 19.02.18
  */
+
 class RemindersRepository {
 
     private val mAuth = FirebaseAuth.getInstance()
@@ -37,6 +37,7 @@ class RemindersRepository {
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("minute").setValue(reminder.minute)
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("numberIntervals").setValue(reminder.numberIntervals)
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("typeInterval").setValue(reminder.typeInterval)
+        databaseReference.child("reminders").child(animalKey).child(reminder.key).child("animalName").setValue(reminder.animalName)
     }
 
     fun editReminder(animalKey: String, reminder: Reminder) {
@@ -49,6 +50,7 @@ class RemindersRepository {
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("minute").setValue(reminder.minute)
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("numberIntervals").setValue(reminder.numberIntervals)
         databaseReference.child("reminders").child(animalKey).child(reminder.key).child("typeInterval").setValue(reminder.typeInterval)
+        databaseReference.child("reminders").child(animalKey).child(reminder.key).child("animalName").setValue(reminder.animalName)
     }
 
     fun generateKey(): String {
@@ -69,7 +71,6 @@ class RemindersRepository {
                 val remindersTempList = mutableListOf<Reminder>()
                 remindersReceived?.children?.let { it.mapTo(remindersTempList) { it.getValue(Reminder::class.java) as Reminder } }
                 remindersListener?.onRemindersLoaded(remindersTempList)
-                d("remindersLoaded", remindersTempList.toString())
             }
 
 

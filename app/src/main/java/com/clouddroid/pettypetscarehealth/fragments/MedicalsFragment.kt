@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.clouddroid.pettypetscarehealth.model.MedicalRecord
 import com.clouddroid.pettypetscarehealth.repositories.MedicalsRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import kotlinx.android.synthetic.main.fragment_medicals.*
+import kotlinx.android.synthetic.main.layout_content_main.*
 
 
 /**
@@ -36,6 +38,7 @@ class MedicalsFragment : Fragment(), MedicalsRepository.MedicalsListListener {
         observeAnimalData()
         setMedicalListener()
         displayRecyclerView()
+        hideFABOnScroll()
     }
 
     private fun connectWithViewModel() {
@@ -88,5 +91,17 @@ class MedicalsFragment : Fragment(), MedicalsRepository.MedicalsListListener {
     private fun hideNoDataText() {
         noMedicalsTextView?.visibility = View.GONE
         medicalsRV?.visibility = View.VISIBLE
+    }
+
+    private fun hideFABOnScroll() {
+        medicalsRV?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    activity?.fabMenu?.hideMenuButton(true)
+                } else if (dy < 0) {
+                    activity?.fabMenu?.showMenuButton(true)
+                }
+            }
+        })
     }
 }

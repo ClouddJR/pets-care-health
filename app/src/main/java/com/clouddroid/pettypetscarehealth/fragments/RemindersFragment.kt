@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.clouddroid.pettypetscarehealth.model.Reminder
 import com.clouddroid.pettypetscarehealth.repositories.RemindersRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import kotlinx.android.synthetic.main.fragment_reminders.*
+import kotlinx.android.synthetic.main.layout_content_main.*
 
 /**
  * Created by arkadiusz on 19.02.18
@@ -36,6 +38,7 @@ class RemindersFragment : Fragment(), RemindersRepository.RemindersListListener 
         observeAnimalData()
         setRemindersListener()
         displayRecyclerView()
+        hideFABOnScroll()
     }
 
     private fun connectWithViewModel() {
@@ -88,5 +91,17 @@ class RemindersFragment : Fragment(), RemindersRepository.RemindersListListener 
     private fun hideNoDataText() {
         noRemindersTextView?.visibility = View.GONE
         remindersRV?.visibility = View.VISIBLE
+    }
+
+    private fun hideFABOnScroll() {
+        remindersRV?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    activity?.fabMenu?.hideMenuButton(true)
+                } else if (dy < 0) {
+                    activity?.fabMenu?.showMenuButton(true)
+                }
+            }
+        })
     }
 }

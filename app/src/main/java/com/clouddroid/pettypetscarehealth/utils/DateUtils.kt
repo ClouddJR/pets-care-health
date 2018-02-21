@@ -1,8 +1,9 @@
 package com.clouddroid.pettypetscarehealth.utils
 
 /**
- * Created by arkadiusz on 20.02.18.
+ * Created by arkadiusz on 20.02.18
  */
+
 object DateUtils {
 
     fun formatDate(year: Int, month: Int, day: Int): String {

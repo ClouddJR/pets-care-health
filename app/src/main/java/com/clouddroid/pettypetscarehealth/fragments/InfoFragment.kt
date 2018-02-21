@@ -19,6 +19,7 @@ import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.viewmodels.AnimalViewModel
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_info.*
+import kotlinx.android.synthetic.main.layout_content_main.*
 import java.io.File
 
 
@@ -29,6 +30,7 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     private var currentAnimal: Animal? = null
     private val heightAdapter = MeasurementValuesRV()
     private val weightAdapter = MeasurementValuesRV()
+    private var oldScrollPosition = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_info, container, false)
@@ -41,6 +43,7 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
         initValuesListener()
         initMoreButtonsClickListeners()
         displayRecyclerView()
+        hideFABOnScroll()
     }
 
     private fun connectWithViewModel() {
@@ -62,7 +65,6 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
                     updateImage(it)
                 }
             }
-
         })
     }
 
@@ -172,25 +174,35 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
     }
 
     private fun hideHeightRV() {
-        heightRV.visibility = View.GONE
-        noHeightTV.visibility = View.VISIBLE
+        heightRV?.visibility = View.GONE
+        noHeightTV?.visibility = View.VISIBLE
     }
 
     private fun showHeightRV() {
-        noHeightTV.visibility = View.GONE
-        heightRV.visibility = View.VISIBLE
+        noHeightTV?.visibility = View.GONE
+        heightRV?.visibility = View.VISIBLE
     }
 
     private fun hideWeightRV() {
-        weightRV.visibility = View.GONE
-        noWeightTV.visibility = View.VISIBLE
+        weightRV?.visibility = View.GONE
+        noWeightTV?.visibility = View.VISIBLE
     }
 
     private fun showWeightRV() {
-        noWeightTV.visibility = View.GONE
-        weightRV.visibility = View.VISIBLE
+        noWeightTV?.visibility = View.GONE
+        weightRV?.visibility = View.VISIBLE
     }
 
+    private fun hideFABOnScroll() {
+        main_scroll_view?.viewTreeObserver?.addOnScrollChangedListener {
+            if (main_scroll_view?.scrollY ?: 0 > oldScrollPosition) {
+                activity?.fabMenu?.hideMenuButton(true)
+            } else if (main_scroll_view?.scrollY ?: 0 < oldScrollPosition || main_scroll_view?.scrollY ?: 0 <= 0) {
+                activity?.fabMenu?.showMenuButton(true)
+            }
+            oldScrollPosition = main_scroll_view?.scrollY ?: 0
+        }
+    }
 
 }
 

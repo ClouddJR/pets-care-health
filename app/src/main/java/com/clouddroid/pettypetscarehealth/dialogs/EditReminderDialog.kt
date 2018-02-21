@@ -16,6 +16,7 @@ import com.clouddroid.pettypetscarehealth.repositories.RemindersRepository
 import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatDate
 import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatTime
 import com.clouddroid.pettypetscarehealth.utils.RemindersUtils
+import com.clouddroid.pettypetscarehealth.utils.RemindersUtils.deleteReminder
 import kotlinx.android.synthetic.main.dialog_edit_reminder.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.toast
@@ -197,6 +198,7 @@ class EditReminderDialog(private val passedContext: Context, themeResId: Int) : 
                 positiveButton(R.string.edit_reminder_dialog_delete_YES) {
                     remindersRepository.deleteReminder(passedAnimal?.key ?: "", passedReminder?.key
                             ?: "")
+                    deleteReminder(passedContext, passedReminder!!)
                     super.dismiss()
                 }
                 negativeButton(R.string.edit_reminder_dialog_delete_NO) {
@@ -211,12 +213,14 @@ class EditReminderDialog(private val passedContext: Context, themeResId: Int) : 
     }
 
     private fun generateReminderForSingleEvent(reminderKey: String): Reminder {
-        return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute, 0, "")
+        return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute, 0, "",
+                passedAnimal?.name ?: "")
     }
 
     private fun generateReminderForRepetitiveEvents(reminderKey: String): Reminder {
         return Reminder(reminderKey, titleEditText.text.toString(), chosenYear, chosenMonth, chosenDay, chosenHour, chosenMinute,
-                (daysSpinner.getChildAt(0) as TextView).text.toString().toInt(), (intervalsSpinner.getChildAt(0) as TextView).text.toString())
+                (daysSpinner.getChildAt(0) as TextView).text.toString().toInt(), (intervalsSpinner.getChildAt(0) as TextView).text.toString(),
+                passedAnimal?.name ?: "")
     }
 
 

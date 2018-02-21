@@ -93,7 +93,6 @@ class AnimalsRepository {
             override fun onCancelled(p0: DatabaseError?) {
                 // not used
             }
-
             override fun onDataChange(animalsReceived: DataSnapshot?) {
                 val animalsTempList = mutableListOf<Animal>()
                 animalsReceived?.children?.let { it.mapTo(animalsTempList) { it.getValue(Animal::class.java) as Animal } }
