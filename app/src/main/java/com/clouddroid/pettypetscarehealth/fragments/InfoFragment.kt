@@ -158,6 +158,7 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
             hideHeightRV()
         } else {
             showHeightRV()
+            heightAdapter.initType("height")
             heightAdapter.initValuesList(list)
             heightAdapter.notifyDataSetChanged()
         }
@@ -168,6 +169,7 @@ class InfoFragment : Fragment(), AnimalsRepository.HeightValuesListener, Animals
             hideWeightRV()
         } else {
             showWeightRV()
+            weightAdapter.initType("weight")
             weightAdapter.initValuesList(list)
             weightAdapter.notifyDataSetChanged()
         }

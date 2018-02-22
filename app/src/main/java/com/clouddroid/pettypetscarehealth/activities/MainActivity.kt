@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.layout_app_bar_main.*
 import kotlinx.android.synthetic.main.layout_content_main.*
 import kotlinx.android.synthetic.main.layout_drawer_main.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.email
 import org.jetbrains.anko.startActivity
 
 
@@ -137,8 +139,15 @@ class MainActivity : AppCompatActivity() {
                     R.id.menu_nav_reminders -> {
                         fragmentToBePlaced = RemindersFragment()
                     }
+                    R.id.menu_nav_vets -> {
+                        fragmentToBePlaced = VetsFragment()
+                    }
+                    R.id.menu_nav_shops -> {
+                        fragmentToBePlaced = ShopsFragment()
+                    }
                     R.id.menu_nav_sign_out -> {
                         displaySignOutDialog()
+                        wasItemClicked = false
                     }
                 }
             }
@@ -215,6 +224,44 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            R.id.menu_main_settings -> {
+                startActivity<SettingsActivity>()
+                true
+            }
+            R.id.menu_main_contact -> {
+                email("arekchmura@gmail.com", "Pet's care & health app")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (fabMenu.isOpened) {
+            fabMenu.close(true)
+            return
+        }
+        if (activeFragment !is InfoFragment) {
+            replaceActiveFragmentWith(InfoFragment())
+            navigationView.setCheckedItem(R.id.menu_nav_info)
+            return
+        }
+        if (activeFragment is InfoFragment) {
+            displayExitDialog()
+        }
+    }
+
+    private fun displayExitDialog() {
+        alert(R.string.main_activity_exit_dialog) {
+            positiveButton(R.string.main_activity_exit_yes) {
+                super.onBackPressed()
+            }
+            negativeButton(R.string.main_activity_exit_no) { }
+        }.show()
     }
 
     private fun displayAnimalPickerDialog() {
@@ -295,6 +342,14 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             galleryDialog?.setPermissionGranted()
+        }
+
+        if (requestCode == 1234 && grantResults[0] == PackageManager.PERMISSION_GRANTED && activeFragment is VetsFragment) {
+            (activeFragment as VetsFragment).setLocationPermissionGranted()
+        }
+
+        if (requestCode == 1234 && grantResults[0] == PackageManager.PERMISSION_GRANTED && activeFragment is ShopsFragment) {
+            (activeFragment as ShopsFragment).setLocationPermissionGranted()
         }
     }
 

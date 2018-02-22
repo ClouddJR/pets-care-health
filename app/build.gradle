@@ -65,6 +65,9 @@ dependencies {
     //Color Picker
     compile 'petrov.kristiyan:colorpicker-library:1.1.8'
 
+    //location
+    implementation 'com.google.android.gms:play-services-location:11.4.2'
+
 }
 
 repositories {

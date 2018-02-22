@@ -1,0 +1,301 @@
+<resources>
+  <string name="app_name">Pets Care&amp;Health</string>
+  <string name="action_settings">Ustawienia</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+
+  <string name="main_activity_edit_animal_button">Edytuj zwierzę</string>
+  <string name="main_activity_sign_out_dialog">Jesteś pewien że chcesz się wylogować?</string>
+  <string name="main_activity_sign_out_yes">Tak</string>
+  <string name="main_activity_sign_out_no">Nie</string>
+  <string name="main_activity_exit_dialog">Jesteś pewien, że chcesz wyjść z aplikacji?</string>
+  <string name="main_activity_exit_yes">Tak</string>
+  <string name="main_activity_exit_no">nie</string>
+
+  <string name="menu_nav_info">Informacje</string>
+  <string name="menu_nav_medical">Historia medyczna</string>
+  <string name="menu_nav_notes">Notatki</string>
+  <string name="menu_nav_gallery">Galeria</string>
+  <string name="menu_nav_reminders">Przypomnienia</string>
+  <string name="menu_nav_sign_out">Wyloguj się</string>
+  <string name="menu_nav_vets">Wyszukaj weterynarzy</string>
+  <string name="menu_nav_shops">Wyszukaj sklepy zoologiczne</string>
+  <string name="menu_nav_additional">Dodatkowe</string>
+  <string name="menu_nav_animal_name">Zwierzę</string>
+  <string name="menu_main_contact">Kontakt</string>
+
+  <string name="fab_animal">Zwierzę</string>
+  <string name="fab_note">Notatka</string>
+  <string name="fab_medical">Rekord medyczny</string>
+  <string name="fab_reminder">Przypomnienie</string>
+  <string name="fab_gallery">Zdjęcie</string>
+
+  <string name="dialog_picker_title">Wybierz typ zwierzęcia</string>
+  <string name="dialog_picker_dog">pies</string>
+  <string name="dialog_picker_cat">kot</string>
+  <string name="dialog_picker_hamster">chomik</string>
+  <string name="dialog_picker_rabbit">królik</string>
+  <string name="dialog_picker_fish">ryba</string>
+  <string name="dialog_picker_parrot">papuga</string>
+  <string name="dialog_picker_turtle">żółw</string>
+  <string name="dialog_picker_other">inny</string>
+  <string name="dialog_picker_other_type">Wprowadź typ zwierzęcie</string>
+
+  <string name="dialog_values_toast_form_invalid">Wprowadź wartość oraz datę</string>
+
+  <string name="title_activity_add_animal">Dodaj nowe zwierzę</string>
+
+  <string name="add_activity_name_form">Wprowadź imię swojego zwierzęcia</string>
+  <string name="add_activity_date_form">Data urodzenia</string>
+  <string name="add_activity_gender_form">Płeć</string>
+  <string name="add_activity_breed_form">Rasa</string>
+  <string name="add_activity_weight_form">Waga</string>
+  <string name="add_activity_height_form">Wysokość</string>
+  <string name="add_activity_color_form">Kolor</string>
+  <string name="add_activity_button_form">Dodaj zwierzę</string>
+  <string name="add_activity_general_category">Ogólne</string>
+  <string name="add_activity_other_category">Inne</string>
+  <string name="add_activity_toast_form">Pola nazwy i daty są wymagane</string>
+
+
+  <string name="add_note_dialog_title">Dodaj nową notatkę</string>
+  <string name="add_note_dialog_title_hint">Tytuł notatki</string>
+  <string name="add_note_dialog_title_tv">Tytuł</string>
+  <string name="add_note_dialog_content_hint">Zawartośc notatki</string>
+  <string name="add_note_dialog_content_tv">Treść</string>
+  <string name="add_note_dialog_color_tv">Kolor</string>
+  <string name="add_note_dialog_button_text">Dodaj notatkę</string>
+  <string name="add_note_dialog_toast_form_invalid">Pola tytułu i treści są wymagane</string>
+
+
+  <string name="add_medical_dialog_title">Dodaj nowy rekord medyczny</string>
+  <string name="add_medical_dialog_title_hint">Tytuł</string>
+  <string name="add_medical_dialog_title_tv">Tytuł</string>
+  <string name="add_medical_dialog_content_hint">Komentarz</string>
+  <string name="add_medical_dialog_content_tv">Komentarz</string>
+  <string name="add_medical_dialog_hospital_hint">Weterynarz</string>
+  <string name="add_medical_dialog_hospital_tv">Weterynarz</string>
+  <string name="add_medical_dialog_date_hint">Data</string>
+  <string name="add_medical_dialog_date_tv">Data wizyty</string>
+  <string name="add_medical_dialog_button_text">Dodaj rekord</string>
+  <string name="add_medical_dialog_toast_form_invalid">Pole tytułu jest wymagane</string>
+
+
+  <string name="add_image_dialog_title">Dodj nowe zdjęcie</string>
+  <string name="add_image_dialog_title_hint">Podpis zdjęcia</string>
+  <string name="add_image_dialog_title_tv">Podpis</string>
+  <string name="add_image_dialog_date_hint">Data</string>
+  <string name="add_image_dialog_date_tv">Data</string>
+  <string name="add_image_dialog_button_text">Dodaj zdjęcie</string>
+  <string name="add_image_dialog_toast_form_invalid">Zdjęcie jest wymagane</string>
+  <string name="add_image_dialog_toast_animal_not_set">Najpierw dodaj zwierzę</string>
+
+
+  <string name="add_reminder_dialog_title">Dodaj nowe powiadomienie</string>
+  <string name="add_reminder_dialog_title_hint">Tekst</string>
+  <string name="add_reminder_dialog_title_tv">Tekst powiadomienia</string>
+  <string name="add_reminder_dialog_date_hint">Data</string>
+  <string name="add_reminder_dialog_date_tv">Data powiadomienia</string>
+  <string name="add_reminder_dialog_frequency_tv">Powtarzanie</string>
+  <string name="add_reminder_dialog_checkbox_text">Tylko raz</string>
+  <string name="add_reminder_dialog_button_text">Dodaj powiadomienie</string>
+  <string name="add_reminder_dialog_toast_form_invalid">Tekst i data są wymagane</string>
+
+  <string-array name="numbers">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+    <item>4</item>
+    <item>5</item>
+    <item>6</item>
+    <item>7</item>
+    <item>8</item>
+    <item>9</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>15</item>
+  </string-array>
+
+  <string-array name="intervals">
+    <item>dni</item>
+    <item>tygodnie</item>
+    <item>miesiące</item>
+  </string-array>
+
+  <string name="edit_image_dialog_title">Edytuj zdjęce</string>
+  <string name="edit_image_dialog_title_hint">Tytuł</string>
+  <string name="edit_image_dialog_title_tv">Tytuł</string>
+  <string name="edit_image_dialog_date_hint">Data</string>
+  <string name="edit_image_dialog_date_tv">Data</string>
+  <string name="edit_image_dialog_delete_button">Usuń zdjęcie</string>
+  <string name="edit_image_dialog_button_text">Zapisz zmianu</string>
+  <string name="edit_image_dialog_delete_question">Na pewno chces usunąc to zdjęcie?</string>
+  <string name="edit_image_dialog_delete_YES">Tak</string>
+  <string name="edit_image_dialog_delete_NO">Nie</string>
+  <string name="edit_image_dialog_toast_form_invalid">Zdjęcie jest wymagane</string>
+  <string name="edit_image_dialog_toast_animal_not_set">Najpierw dodaj zwierzę</string>
+
+  <string name="edit_note_dialog_title">Edytuj notatkę</string>
+  <string name="edit_note_dialog_title_hint">Tytuł notatki</string>
+  <string name="edit_note_dialog_title_tv">Tytuł</string>
+  <string name="edit_note_dialog_content_hint">Zawartość notatki</string>
+  <string name="edit_note_dialog_content_tv">Treść</string>
+  <string name="edit_note_dialog_color_tv">Kolor</string>
+  <string name="edit_note_dialog_button_text">Zapisz zmiany</string>
+  <string name="edit_note_dialog_toast_form_invalid">Tytuł i zawartość są wymagane</string>
+  <string name="edit_note_dialog_delete_button">Usuń notatkę</string>
+  <string name="edit_note_dialog_delete_question">Na pewno chcesz usunąć tę notatkę?</string>
+  <string name="edit_note_dialog_delete_YES">Tak</string>
+  <string name="edit_note_dialog_delete_NO">Nie</string>
+
+
+  <string name="edit_medical_dialog_title">Edytuj rekord medyczny</string>
+  <string name="edit_medical_dialog_title_hint">Tytuł rekordu</string>
+  <string name="edit_medical_dialog_title_tv">Tytuł</string>
+  <string name="edit_medical_dialog_content_hint">Komentarz</string>
+  <string name="edit_medical_dialog_content_tv">Komentarz</string>
+  <string name="edit_medical_dialog_hospital_hint">Szpital/Weterynarz</string>
+  <string name="edit_medical_dialog_hospital_tv">Weterynarz</string>
+  <string name="edit_medical_dialog_date_hint">Data</string>
+  <string name="edit_medical_dialog_date_tv">Data wizyty</string>
+  <string name="edit_medical_dialog_button_text">Zapisz zmiany</string>
+  <string name="edit_medical_dialog_button_delete_text">Usuń rekord</string>
+  <string name="edit_medical_dialog_delete_question">Na pewno chesz usunąć ten rekord?</string>
+  <string name="edit_medical_dialog_delete_YES">Tak</string>
+  <string name="edit_medical_dialog_delete_NO">Nie</string>
+  <string name="edit_medical_dialog_toast_form_invalid">Tytuł jest wymagany</string>
+
+  <string name="edit_reminder_dialog_title">Edytuj powiadomienie</string>
+  <string name="edit_reminder_dialog_title_hint">Tekst</string>
+  <string name="edit_reminder_dialog_title_tv">Tekst powiadomienia</string>
+  <string name="edit_reminder_dialog_date_hint">Data</string>
+  <string name="edit_reminder_dialog_date_tv">Data powiadomienia</string>
+  <string name="edit_reminder_dialog_frequency_tv">Powtarzanie</string>
+  <string name="edit_reminder_dialog_checkbox_text">Tylko raz</string>
+  <string name="edit_reminder_dialog_button_text">Zapisz zmiany</string>
+  <string name="edit_reminder_dialog_button_delete_text">Usuń powiadomienie</string>
+  <string name="edit_reminder_dialog_toast_form_invalid">Tekst i data są wymagane</string>
+  <string name="edit_reminder_dialog_delete_question">Na pewno chcesz usunąć to powiadomienie?</string>
+  <string name="edit_reminder_dialog_delete_YES">Tak</string>
+  <string name="edit_reminder_dialog_delete_NO">Nie</string>
+
+
+  <string-array name="gender">
+    <item>Samiec</item>
+    <item>Samica</item>
+  </string-array>
+
+  <string name="edit_activity_title">Edytuj zwierzę</string>
+  <string name="edit_activity_button_save">Zapisz zmiany</string>
+  <string name="edit_activity_button_delete">Usuń zwierzę</string>
+  <string name="dialog_back_pressed_question">Jesteś pewien? Wszystkie zmiany zostaną utracone</string>
+  <string name="edit_activity_dialog_delete_question">Na pewno chcesz usunąć to zwierzę?</string>
+  <string name="dialog_ok_button">Ok</string>
+  <string name="dialog_cancel_button">Anuluj</string>
+
+
+  <string name="login_activity_title">LoginActivity</string>
+  <string name="login_activity_email">Adres e-mail</string>
+  <string name="login_activity_password">Hasło</string>
+  <string name="login_activity_login_button">Zaloguj</string>
+  <string name="login_activity_create_account"><u>Załóż konto</u></string>
+  <string name="login_activity_create_q_account">Nie posiadasz konta?</string>
+  <string name="login_activity_or">albo</string>
+  <string name="login_activity_google">Zaloguj się z Google</string>
+  <string name="login_activity_wrong_credentials">Sprawdź swój e-mail i hasło</string>
+  <string name="login_activity_connection_problem">Sprawdź swoje połączenie internetowe</string>
+  <string name="login_activity_password_reset"><u>Zapomnialeś hasła?</u></string>
+  <string name="login_activity_password_reset_toast_success">Wiadomość z instrukcjami została wysłana na podany adres</string>
+  <string name="login_activity_password_reset_toast_fail">Ten e-mail nie istenieje w bazie danych</string>
+  <string name="login_activity_password_reset_form_edit_text">Adres e-mail</string>
+  <string name="login_activity_password_reset_form_button">Resetuj</string>
+
+  <string name="info_fragment_height_chart_no_data">Kliknij przycisk "więcej" aby dodać nowe wartości</string>
+  <string name="info_fragment_weight_chart_no_data">Kliknij przycisk "więcej" aby dodać nowe wartości</string>
+  <string name="info_fragment_weight_chart_label">Waga</string>
+  <string name="info_fragment_height_chart_label">Wysokość</string>
+  <string name="info_fragment_more_button">więcej</string>
+  <string name="info_fragment_general">Ogólne</string>
+  <string name="info_fragment_name">nazwa:</string>
+  <string name="info_fragment_date">data:</string>
+  <string name="info_fragment_type">typ:</string>
+  <string name="info_fragment_other">Inne</string>
+  <string name="info_fragment_breed">rasa:</string>
+  <string name="info_fragment_color">kolor:</string>
+  <string name="info_fragment_gender">płeć:</string>
+  <string name="info_fragment_height_values">Wartości wysokości</string>
+  <string name="info_fragment_weight_values">Wartości wagi</string>
+
+  <string name="info_fragment_no_data_text">Dodaj nowe zwierzę klikjąc na przycisk w prawym dolnym rogu</string>
+
+  <string name="medicals_fragment_no_data_text">Kliknij na przycisk w prawym dolnym rogu aby dodać nowy rekord medyczny dla zaznaczonego zwierzęcia</string>
+
+  <string name="notes_fragment_no_data_text">Kliknij na przycisk w prawym dolnym rogu aby dodać nową notatkę dla zaznaczonego zwierzęcia</string>
+
+  <string name="gallery_fragment_no_data_text">Kliknij na przycisk w prawym dolnym rogu aby dodać nowe zdjęcie dla zaznaczonego zwierzęcia</string>
+
+  <string name="reminders_fragment_no_data_text">Kliknij na przycisk w prawym dolnym rogu aby dodać nowe przypomnienie dla zaznaczonego zwierzęcia</string>
+
+  <string name="vets_fragment_no_data_text">Nie udało się znaleźć weterynarzy w pobliżu (Sprawdź swoje połączenie internetowe i ustawienia lokalizacji)</string>
+  <string name="shops_fragment_no_data_text">Nie udało się znaleźć sklepów zoologicznych w pobliżu (Sprawdź swoje połączenie internetowe i ustawienia lokalizacji)</string>
+
+
+  <string name="dialog_chart_trashImageView_description">trash icon</string>
+  <string name="dialog_chart_value_placeholder">wartość</string>
+  <string name="dialog_chart_date_placeholder">data:</string>
+  <string name="dialog_chart_button_add_value">Dodaj nową wartość</string>
+  <string name="dialog_chart_no_data_text">Brak wartości do wyświetlenia</string>
+  <string name="dialog_chart_adding_dialog_date">Wprowadź datę</string>
+  <string name="dialog_chart_adding_dialog_value">Wprowadź wartość</string>
+  <string name="dialog_chart_adding_dialog_positive_button">OK</string>
+  <string name="dialog_chart_adding_dialog_negative_button">Anuluj</string>
+
+  <string name="medical_item_hospital_tv">Weterynarz: \</string>
+  <string name="medical_item_date_tv">Data wizyty: \</string>
+
+  <string name="reminder_item_date_tv">Data: \</string>
+  <string name="reminder_item_repeating_tv">Powtarzanie</string>
+  <string name="reminder_item_text_tv">Tytuł</string>
+  <string name="reminder_item_repetition_text_first_word">Co</string>
+  <string name="reminder_item_repetition_text_single_day">dzień</string>
+  <string name="reminder_item_repetition_text_multiple_days">dni</string>
+  <string name="reminder_item_repetition_text_single_week">tydzień</string>
+  <string name="reminder_item_repetition_text_multiple_weeks">tygodnie</string>
+  <string name="reminder_item_repetition_text_single_month">miesiąć</string>
+  <string name="reminder_item_repetition_text_multiple_months">miesiące</string>
+  <string name="reminder_item_repetition_text_single_event">Tylko raz</string>
+
+  <string name="notification_channel_name">Powiadomienia</string>
+  <string name="notification_channel_description">Powiadomienia związane ze zwierzętami z aplikacji</string>
+
+  <string name="settings_activity_title">Ustawienia</string>
+  <string name="settings_height_unit_title">Jednostka wysokości</string>
+  <string name="settings_height_unit_default">cm</string>
+  <string name="settings_weight_unit_title">Jednostka wagi</string>
+  <string name="settings_weight_unit_default">kg</string>
+
+  <string-array name="height_units">
+    <item>cm</item>
+    <item>cale</item>
+  </string-array>
+
+  <string-array name="height_units_values">
+    <item>cm</item>
+    <item>cale</item>
+  </string-array>
+
+  <string-array name="weight_units">
+    <item>kg</item>
+    <item>funty</item>
+  </string-array>
+
+  <string-array name="weight_units_values">
+    <item>kg</item>
+    <item>funty</item>
+  </string-array>
+
+</resources>

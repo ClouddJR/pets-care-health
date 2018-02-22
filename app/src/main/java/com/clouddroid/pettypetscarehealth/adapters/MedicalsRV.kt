@@ -49,8 +49,13 @@ class MedicalsRV : RecyclerView.Adapter<MedicalsRV.ViewHolder>() {
         fun bindElement(medicalRecord: MedicalRecord?) {
             view.titleTextView.text = medicalRecord?.title
             view.dateTextView.text = medicalRecord?.date
-            view.commentTextView.text = medicalRecord?.comment
             view.hospitalTextView.text = medicalRecord?.hospital
+            if (medicalRecord?.comment?.isNotEmpty() == true) {
+                view.commentTextView.visibility = View.VISIBLE
+                view.commentTextView.text = medicalRecord.comment
+            } else {
+                view.commentTextView.visibility = View.GONE
+            }
 
             val context = view.context
             view.mainCardView.setOnClickListener {

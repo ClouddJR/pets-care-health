@@ -10,6 +10,7 @@ import com.clouddroid.pettypetscarehealth.model.Animal
 import com.clouddroid.pettypetscarehealth.repositories.AnimalsRepository
 import com.clouddroid.pettypetscarehealth.utils.DateUtils.formatDate
 import kotlinx.android.synthetic.main.dialog_add_measurement_value.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -36,16 +37,24 @@ class AddValueDialog(context: Context, themeResId: Int) : Dialog(context, themeR
 
     private fun initPositiveAndNegativeButton() {
         positiveButton.setOnClickListener {
-            when (valueType) {
-                "height" -> addNewHeightValue()
-                "weight" -> addNewWeightValue()
+            if (isFormValid()) {
+                when (valueType) {
+                    "height" -> addNewHeightValue()
+                    "weight" -> addNewWeightValue()
+                }
+                dismiss()
+            } else {
+                context.toast(R.string.dialog_values_toast_form_invalid)
             }
-            dismiss()
         }
 
         negativeButton.setOnClickListener {
             dismiss()
         }
+    }
+
+    private fun isFormValid(): Boolean {
+        return dateEditText.text.toString().isNotEmpty() && valueEditText.text.toString().isNotEmpty()
     }
 
     private fun addNewHeightValue() {

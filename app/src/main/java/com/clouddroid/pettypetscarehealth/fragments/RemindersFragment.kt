@@ -36,6 +36,7 @@ class RemindersFragment : Fragment(), RemindersRepository.RemindersListListener 
         super.onStart()
         connectWithViewModel()
         observeAnimalData()
+        showFAB()
         setRemindersListener()
         displayRecyclerView()
         hideFABOnScroll()
@@ -61,6 +62,10 @@ class RemindersFragment : Fragment(), RemindersRepository.RemindersListListener 
 
     private fun setCurrentAnimalInRV(animal: Animal) {
         remindersAdapter.updateCurrentAnimal(animal)
+    }
+
+    private fun showFAB() {
+        activity?.fabMenu?.showMenuButton(true)
     }
 
     private fun setRemindersListener() {

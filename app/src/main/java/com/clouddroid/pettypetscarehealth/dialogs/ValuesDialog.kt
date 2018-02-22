@@ -76,11 +76,14 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
 
     fun setValuesType(type: String) {
         valueType = type
+        RVAdapter.initType(valueType)
     }
 
     override fun onHeightValuesLoaded(list: List<MeasurementValue>) {
         if (list.isEmpty()) {
             displayNoDataText()
+        } else {
+            hideNoDataText()
         }
         setChartValuesAndRefreshRV(list)
     }
@@ -88,12 +91,18 @@ class ValuesDialog(context: Context?, themeResId: Int) : Dialog(context, themeRe
     override fun onWeightValuesLoaded(list: List<MeasurementValue>) {
         if (list.isEmpty()) {
             displayNoDataText()
+        } else {
+            hideNoDataText()
         }
         setChartValuesAndRefreshRV(list)
     }
 
     private fun displayNoDataText() {
         noDataTextView.visibility = View.VISIBLE
+    }
+
+    private fun hideNoDataText() {
+        noDataTextView.visibility = View.GONE
     }
 
     private fun setChartValuesAndRefreshRV(list: List<MeasurementValue>) {

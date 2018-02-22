@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content">
+
+  <android.support.v7.widget.RecyclerView
+    android:id="@+id/vetsRV"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+
+  </android.support.v7.widget.RecyclerView>
+
+  <TextView
+    android:id="@+id/noVetsTextView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:gravity="center"
+    android:text="@string/vets_fragment_no_data_text"
+    android:textSize="21sp"
+    android:visibility="gone"/>
+
+</RelativeLayout>

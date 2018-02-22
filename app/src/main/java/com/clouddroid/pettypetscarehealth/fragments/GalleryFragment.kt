@@ -36,6 +36,7 @@ class GalleryFragment : Fragment(), ImagesRepository.ImagesListListener {
         super.onStart()
         connectWithViewModel()
         observeAnimalData()
+        showFAB()
         setImagesListener()
         displayRecyclerView()
         hideFABOnScroll()
@@ -55,12 +56,17 @@ class GalleryFragment : Fragment(), ImagesRepository.ImagesListListener {
         })
     }
 
+
     private fun getImagesForAnimal(animal: Animal) {
         imagesRepository.getImagesForAnimal(animal.key)
     }
 
     private fun setCurrentAnimalInRV(animal: Animal) {
         imagesAdapter.updateCurrentAnimal(animal)
+    }
+
+    private fun showFAB() {
+        activity?.fabMenu?.showMenuButton(true)
     }
 
     private fun setImagesListener() {

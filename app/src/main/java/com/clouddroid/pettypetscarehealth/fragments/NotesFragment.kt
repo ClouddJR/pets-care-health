@@ -37,6 +37,7 @@ class NotesFragment : Fragment(), NotesRepository.NotesListListener {
         super.onStart()
         connectWithViewModel()
         observeAnimalData()
+        showFAB()
         setNoteListener()
         displayRecyclerView()
         hideFABOnScroll()
@@ -62,6 +63,10 @@ class NotesFragment : Fragment(), NotesRepository.NotesListListener {
 
     private fun setCurrentAnimalInRV(animal: Animal) {
         notesAdapter.updateCurrentAnimal(animal)
+    }
+
+    private fun showFAB() {
+        activity?.fabMenu?.showMenuButton(true)
     }
 
     private fun setNoteListener() {

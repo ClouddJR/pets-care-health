@@ -3,11 +3,6 @@
   xmlns:tools="http://schemas.android.com/tools"
   tools:context="com.clouddroid.pettypetscarehealth.activities.MainActivity">
   <item
-    android:id="@+id/menu_main_about"
-    android:orderInCategory="100"
-    android:title="@string/menu_main_about"
-    app:showAsAction="never"/>
-  <item
     android:id="@+id/menu_main_contact"
     android:orderInCategory="100"
     android:title="@string/menu_main_contact"

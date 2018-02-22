@@ -49,10 +49,10 @@
         <TextView
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:gravity="center"
+          android:gravity="start"
           android:text="@string/edit_reminder_dialog_title_tv"
           android:textColor="@color/colorPrimaryDark"
-          grid:layout_columnWeight="1"
+          grid:layout_columnWeight="1.8"
           grid:layout_gravity="fill_horizontal"/>
 
         <EditText
@@ -65,7 +65,7 @@
         <TextView
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:gravity="center"
+          android:gravity="start"
           android:text="@string/edit_reminder_dialog_date_tv"
           android:textColor="@color/colorPrimaryDark"
           grid:layout_columnWeight="1"
@@ -106,7 +106,7 @@
           android:layout_height="wrap_content"
           android:layout_margin="8dp"
           android:layout_marginTop="16dp"
-          android:gravity="center"
+          android:gravity="start"
           android:text="@string/edit_reminder_dialog_frequency_tv"
           android:textColor="@color/colorPrimaryDark"
           grid:layout_columnWeight="1"

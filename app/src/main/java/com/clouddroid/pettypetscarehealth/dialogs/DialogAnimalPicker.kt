@@ -42,13 +42,13 @@ class DialogAnimalPicker(internal var context: Context, @StyleRes themeResId: In
 
     private fun pickAnimal(imageAnimal: ImageView) {
         val animalType: String = when (imageAnimal.id) {
-            R.id.dialog_image_dog -> "dog"
-            R.id.dialog_image_hamster -> "hamster"
-            R.id.dialog_image_rabbit -> "rabbit"
-            R.id.dialog_image_fish -> "fish"
-            R.id.dialog_image_cat -> "cat"
-            R.id.dialog_image_parrot -> "parrot"
-            R.id.dialog_image_turtle -> "turtle"
+            R.id.dialog_image_dog -> context.getString(R.string.dialog_picker_dog)
+            R.id.dialog_image_hamster -> context.getString(R.string.dialog_picker_hamster)
+            R.id.dialog_image_rabbit -> context.getString(R.string.dialog_picker_rabbit)
+            R.id.dialog_image_fish -> context.getString(R.string.dialog_picker_fish)
+            R.id.dialog_image_cat -> context.getString(R.string.dialog_picker_cat)
+            R.id.dialog_image_parrot -> context.getString(R.string.dialog_picker_parrot)
+            R.id.dialog_image_turtle -> context.getString(R.string.dialog_picker_turtle)
             R.id.dialog_image_other -> customType
             else -> "unknown"
         }
@@ -70,7 +70,7 @@ class DialogAnimalPicker(internal var context: Context, @StyleRes themeResId: In
     private fun displayDialog(imageAnimal: ImageView) {
         val dialog = AlertDialog.Builder(context, R.style.AnimalOtherDialog)
         val editText = EditText(context)
-        editText.hint = "Enter animal type"
+        editText.hint = context.getString(R.string.dialog_picker_other_type)
         val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         editText.layoutParams = layoutParams
         dialog.setView(editText)

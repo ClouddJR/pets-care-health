@@ -43,12 +43,14 @@
         android:enabled="true"
         android:visible="true">
         <item
+          android:id="@+id/menu_nav_vets"
           android:icon="@drawable/ic_local_pharmacy"
           android:title="@string/menu_nav_vets">
         </item>
         <item
+          android:id="@+id/menu_nav_shops"
           android:icon="@drawable/ic_action_home"
-          android:title="@string/menu_nav_hotels">
+          android:title="@string/menu_nav_shops">
         </item>
         <item
           android:id="@+id/menu_nav_sign_out"

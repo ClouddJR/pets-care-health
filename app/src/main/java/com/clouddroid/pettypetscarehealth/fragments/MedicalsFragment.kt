@@ -20,8 +20,9 @@ import kotlinx.android.synthetic.main.layout_content_main.*
 
 
 /**
- * Created by arkadiusz on 16.02.18.
+ * Created by arkadiusz on 16.02.18
  */
+
 class MedicalsFragment : Fragment(), MedicalsRepository.MedicalsListListener {
 
     private var animalViewModel: AnimalViewModel? = null
@@ -36,6 +37,7 @@ class MedicalsFragment : Fragment(), MedicalsRepository.MedicalsListListener {
         super.onStart()
         connectWithViewModel()
         observeAnimalData()
+        showFAB()
         setMedicalListener()
         displayRecyclerView()
         hideFABOnScroll()
@@ -61,6 +63,10 @@ class MedicalsFragment : Fragment(), MedicalsRepository.MedicalsListListener {
 
     private fun setCurrentAnimalInRV(animal: Animal) {
         medicalsAdapter.updateCurrentAnimal(animal)
+    }
+
+    private fun showFAB() {
+        activity?.fabMenu?.showMenuButton(true)
     }
 
     private fun setMedicalListener() {

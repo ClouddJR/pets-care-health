@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <ListPreference
+    android:defaultValue="@string/settings_height_unit_default"
+    android:dialogTitle="@string/settings_height_unit_title"
+    android:entries="@array/height_units"
+    android:entryValues="@array/height_units_values"
+    android:key="pref_heightUnitType"
+    android:title="@string/settings_height_unit_title"/>
+
+  <ListPreference
+    android:defaultValue="@string/settings_weight_unit_default"
+    android:dialogTitle="@string/settings_weight_unit_title"
+    android:entries="@array/weight_units"
+    android:entryValues="@array/weight_units_values"
+    android:key="pref_weightUnitType"
+    android:title="@string/settings_weight_unit_title"/>
+
+</PreferenceScreen>

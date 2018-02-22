@@ -17,8 +17,9 @@ import org.jetbrains.anko.layoutInflater
 import java.io.File
 
 /**
- * Created by arkadiusz on 17.02.18.
+ * Created by arkadiusz on 17.02.18
  */
+
 class ImagesRV : RecyclerView.Adapter<ImagesRV.ViewHolder>() {
 
     private var imagesList: List<GalleryItem>? = null
@@ -54,8 +55,19 @@ class ImagesRV : RecyclerView.Adapter<ImagesRV.ViewHolder>() {
                 item?.path?.isNotEmpty() == true -> Glide.with(view.context).load(FirebaseStorage.getInstance().getReference(item.path)).into(view.itemImage)
             }
 
-            view.titleTextView.text = item?.title
-            view.dateTextView.text = item?.date
+            if (item?.title?.isNotEmpty() == true) {
+                view.titleTextView.visibility = View.VISIBLE
+                view.titleTextView.text = item.title
+            } else {
+                view.titleTextView.visibility = View.GONE
+            }
+
+            if (item?.date?.isNotEmpty() == true) {
+                view.dateTextView.visibility = View.VISIBLE
+                view.dateTextView.text = item.date
+            } else {
+                view.dateTextView.visibility = View.GONE
+            }
 
             val context = view.context
             view.mainCardView.setOnClickListener {
