@@ -1,6 +1,7 @@
 <resources>
-  <string name="app_name">Pets Care&amp;Health</string>
+  <string name="app_name">Pet\'s Care&amp;Health</string>
   <string name="action_settings">Ustawienia</string>
+  <string name="action_remove_ads">Usuń reklamy</string>
 
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -230,7 +231,7 @@
   <string name="info_fragment_height_values">Wartości wysokości</string>
   <string name="info_fragment_weight_values">Wartości wagi</string>
 
-  <string name="info_fragment_no_data_text">Dodaj nowe zwierzę klikjąc na przycisk w prawym dolnym rogu</string>
+  <string name="info_fragment_no_data_text">Dodaj nowe zwierzę klikając na przycisk w prawym dolnym rogu</string>
 
   <string name="medicals_fragment_no_data_text">Kliknij na przycisk w prawym dolnym rogu aby dodać nowy rekord medyczny dla zaznaczonego zwierzęcia</string>
 

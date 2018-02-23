@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   app:layout_behavior="@string/appbar_scrolling_view_behavior"
-  tools:context="com.clouddroid.pettypetscarehealth.activities.EditAnimalActivity"
+  tools:context="com.clouddroid.petscarehealth.activities.EditAnimalActivity"
   tools:showIn="@layout/activity_edit_animal">
 
 
@@ -176,7 +176,7 @@
       android:layout_width="match_parent"
       android:layout_height="40dp"
       android:layout_marginTop="20dp"
-      android:layout_marginBottom="25dp"
+      android:layout_marginBottom="85dp"
       android:layout_marginLeft="30dp"
       android:layout_marginRight="30dp"
       android:layout_column="0"

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.clouddroid.pettypetscarehealth">
+  package="com.clouddroid.petscarehealth">
 
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="com.android.vending.BILLING"/>
 
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
-    android:name=".PettyApplication"
+    android:name="com.clouddroid.petscarehealth.PettyApplication"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
@@ -22,7 +23,7 @@
 
     <activity
       android:label="@string/app_name"
-      android:name=".activities.MainActivity"
+      android:name="com.clouddroid.petscarehealth.activities.MainActivity"
       android:screenOrientation="portrait"
       android:theme="@style/AppTheme.NoActionBar.Transparent">
       <intent-filter>
@@ -34,50 +35,50 @@
 
     <activity
       android:label="@string/title_activity_add_animal"
-      android:name=".activities.AddAnimalActivity"
-      android:parentActivityName=".activities.MainActivity"
+      android:name="com.clouddroid.petscarehealth.activities.AddAnimalActivity"
+      android:parentActivityName="com.clouddroid.petscarehealth.activities.MainActivity"
       android:theme="@style/AppTheme.NoActionBar"
       android:windowSoftInputMode="stateHidden">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.clouddroid.pettypetscarehealth.activities.MainActivity"/>
+        android:value="com.clouddroid.petscarehealth.activities.MainActivity"/>
     </activity>
 
     <activity
       android:launchMode="singleInstance"
-      android:name=".activities.LoginActivity"
+      android:name="com.clouddroid.petscarehealth.activities.LoginActivity"
       android:theme="@style/AppTheme.NoActionBar.Login"
       android:windowSoftInputMode="stateHidden">
     </activity>
 
     <activity
       android:label="@string/edit_activity_title"
-      android:name=".activities.EditAnimalActivity"
-      android:parentActivityName=".activities.MainActivity"
+      android:name="com.clouddroid.petscarehealth.activities.EditAnimalActivity"
+      android:parentActivityName="com.clouddroid.petscarehealth.activities.MainActivity"
       android:theme="@style/AppTheme.NoActionBar"
       android:windowSoftInputMode="stateHidden">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.clouddroid.pettypetscarehealth.activities.MainActivity"/>
+        android:value="com.clouddroid.petscarehealth.activities.MainActivity"/>
     </activity>
 
     <activity
       android:label="@string/settings_activity_title"
-      android:name=".activities.SettingsActivity"
-      android:parentActivityName=".activities.MainActivity"
+      android:name="com.clouddroid.petscarehealth.activities.SettingsActivity"
+      android:parentActivityName="com.clouddroid.petscarehealth.activities.MainActivity"
       android:theme="@style/AppTheme">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.clouddroid.pettypetscarehealth.activities.MainActivity"/>
+        android:value="com.clouddroid.petscarehealth.activities.MainActivity"/>
     </activity>
 
     <receiver
-      android:name=".receivers.ReminderReceiver">
+      android:name="com.clouddroid.petscarehealth.receivers.ReminderReceiver">
     </receiver>
 
     <receiver
       android:enabled="true"
-      android:name=".receivers.BootReceiver">
+      android:name="com.clouddroid.petscarehealth.receivers.BootReceiver">
       <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"/>
       </intent-filter>

@@ -1,4 +1,4 @@
-package com.clouddroid.pettypetscarehealth;
+package com.clouddroid.petscarehealth;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

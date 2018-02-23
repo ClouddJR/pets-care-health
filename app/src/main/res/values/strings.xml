@@ -1,6 +1,7 @@
 <resources>
-  <string name="app_name">Pets Care&amp;Health</string>
+  <string name="app_name">Pet\'s Care&amp;Health</string>
   <string name="action_settings">Settings</string>
+  <string name="action_remove_ads">Remove ads</string>
 
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
