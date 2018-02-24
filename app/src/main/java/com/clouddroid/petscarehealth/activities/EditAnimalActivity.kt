@@ -153,13 +153,14 @@ class EditAnimalActivity : AppCompatActivity() {
     }
 
     private fun isFormValid(): Boolean {
-        val format = SimpleDateFormat("yyyy-MM-dd", Locale.UK)
-        try {
-            format.parse(dateEditText.text.toString())
-        } catch (e: ParseException) {
-            return false
+        if (dateEditText.text.toString().isNotEmpty()) {
+            val format = SimpleDateFormat("yyyy-MM-dd", Locale.UK)
+            try {
+                format.parse(dateEditText.text.toString())
+            } catch (e: ParseException) {
+                return false
+            }
         }
-
         if (nameEditText.text.toString() == "") {
             return false
         }
@@ -218,6 +219,8 @@ class EditAnimalActivity : AppCompatActivity() {
 
     private fun startCropImageActivity(imageUri: Uri) {
         CropImage.activity(imageUri)
+                .setAspectRatio(18, 9)
+                .setFixAspectRatio(true)
                 .start(this)
     }
 

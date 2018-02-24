@@ -57,7 +57,7 @@
   <string name="add_activity_button_form">Add new Animal</string>
   <string name="add_activity_general_category">General</string>
   <string name="add_activity_other_category">Other</string>
-  <string name="add_activity_toast_form">Name and date fields are required</string>
+  <string name="add_activity_toast_form">Name field is required</string>
 
 
   <string name="add_note_dialog_title">Add new note</string>

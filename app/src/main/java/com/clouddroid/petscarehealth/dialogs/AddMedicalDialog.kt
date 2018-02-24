@@ -14,8 +14,9 @@ import org.jetbrains.anko.toast
 import java.util.*
 
 /**
- * Created by arkadiusz on 16.02.18.
+ * Created by arkadiusz on 16.02.18
  */
+
 class AddMedicalDialog(private val passedContext: Context, themeResId: Int) : Dialog(passedContext, themeResId) {
 
     private val medicalsRepository = MedicalsRepository()

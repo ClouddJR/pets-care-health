@@ -91,10 +91,14 @@ class MainActivity : AppCompatActivity() {
             if (!result.isSuccess) {
                 // Problem
             } else {
-                helper.queryInventoryAsync(PurchaseUtils.GotInventoryListener)
+                try {
+                    helper.queryInventoryAsync(PurchaseUtils.GotInventoryListener)
+                } catch (e: IabHelper.IabAsyncInProgressException) {
+                    e.printStackTrace()
+                }
             }
         }
-
+        invalidateOptionsMenu()
     }
 
     private fun observeAnimalData() {
@@ -244,6 +248,15 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val prefs = defaultPrefs(this)
+        val areAdsRemoved: String? = prefs["removed_ads"]
+        if (areAdsRemoved == "true") {
+            menu?.removeItem(R.id.menu_main_ads)
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.menu_main_settings -> {
@@ -255,8 +268,12 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_main_ads -> {
-                helper.launchPurchaseFlow(this, "remove_ads", 10001,
-                        PurchaseUtils.PurchaseFinishedListener, "")
+                try {
+                    helper.launchPurchaseFlow(this, "remove_ads", 10001,
+                            PurchaseUtils.PurchaseFinishedListener, "")
+                } catch (e: IabHelper.IabAsyncInProgressException) {
+                    e.printStackTrace()
+                }
                 return true
             }
             else -> super.onOptionsItemSelected(item)

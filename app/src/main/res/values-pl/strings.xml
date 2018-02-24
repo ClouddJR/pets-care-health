@@ -57,7 +57,7 @@
   <string name="add_activity_button_form">Dodaj zwierzę</string>
   <string name="add_activity_general_category">Ogólne</string>
   <string name="add_activity_other_category">Inne</string>
-  <string name="add_activity_toast_form">Pola nazwy i daty są wymagane</string>
+  <string name="add_activity_toast_form">Pole nazwy jest wymagane</string>
 
 
   <string name="add_note_dialog_title">Dodaj nową notatkę</string>
