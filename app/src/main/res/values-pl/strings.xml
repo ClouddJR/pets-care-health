@@ -228,7 +228,7 @@
   <string name="info_fragment_breed">rasa:</string>
   <string name="info_fragment_color">kolor:</string>
   <string name="info_fragment_gender">płeć:</string>
-  <string name="info_fragment_height_values">Wartości wysokości</string>
+  <string name="info_fragment_height_values">Wartości wzrostu</string>
   <string name="info_fragment_weight_values">Wartości wagi</string>
 
   <string name="info_fragment_no_data_text">Dodaj nowe zwierzę klikając na przycisk w prawym dolnym rogu</string>

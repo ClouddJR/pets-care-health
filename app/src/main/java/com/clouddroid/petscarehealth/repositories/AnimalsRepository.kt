@@ -24,6 +24,15 @@ class AnimalsRepository {
     private var heightValuesListener: HeightValuesListener? = null
     private var weightValuesListener: WeightValuesListener? = null
 
+    init {
+        databaseReference.child("animals").keepSynced(true)
+        databaseReference.child("measurements").keepSynced(true)
+        databaseReference.child("notes").keepSynced(true)
+        databaseReference.child("medicals").keepSynced(true)
+        databaseReference.child("reminders").keepSynced(true)
+        databaseReference.child("images").keepSynced(true)
+    }
+
 
     interface AnimalListListener {
         fun onAnimalsListLoaded(list: List<Animal>)
@@ -93,6 +102,7 @@ class AnimalsRepository {
             override fun onCancelled(p0: DatabaseError?) {
                 // not used
             }
+
             override fun onDataChange(animalsReceived: DataSnapshot?) {
                 val animalsTempList = mutableListOf<Animal>()
                 animalsReceived?.children?.let { it.mapTo(animalsTempList) { it.getValue(Animal::class.java) as Animal } }
