@@ -281,6 +281,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        if (layoutDrawer.isDrawerOpen(navigationView)) {
+            layoutDrawer.closeDrawer(GravityCompat.START)
+            return
+        }
+
         if (fabMenu.isOpened) {
             fabMenu.close(true)
             return
@@ -290,6 +295,8 @@ class MainActivity : AppCompatActivity() {
             navigationView.setCheckedItem(R.id.menu_nav_info)
             return
         }
+
+        super.onBackPressed()
     }
 
     private fun displayAnimalPickerDialog() {
