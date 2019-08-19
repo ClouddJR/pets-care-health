@@ -290,18 +290,6 @@ class MainActivity : AppCompatActivity() {
             navigationView.setCheckedItem(R.id.menu_nav_info)
             return
         }
-        if (activeFragment is InfoFragment) {
-            displayExitDialog()
-        }
-    }
-
-    private fun displayExitDialog() {
-        alert(R.string.main_activity_exit_dialog) {
-            positiveButton(R.string.main_activity_exit_yes) {
-                super.onBackPressed()
-            }
-            negativeButton(R.string.main_activity_exit_no) { }
-        }.show()
     }
 
     private fun displayAnimalPickerDialog() {
